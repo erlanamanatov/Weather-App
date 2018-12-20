@@ -1,7 +1,9 @@
 package com.erkprog.weather.ui.main;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +12,27 @@ import android.widget.TextView;
 
 import com.erkprog.weather.R;
 import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.util.MyUtil;
 
 import java.util.List;
 
 public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdapter
     .DailyViewHolder> {
 
+  private static final String TAG = "DailyForecastAdapter";
   private List<ForecastResponse.DailyForecast> mData;
+  private Context mContext;
 
-  DailyForecastAdapter(List<ForecastResponse.DailyForecast> data) {
+  DailyForecastAdapter(List<ForecastResponse.DailyForecast> data, Context context) {
     mData = data;
+    mContext = context;
   }
+
 
   @NonNull
   @Override
   public DailyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
     View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.daily_forecast,
         viewGroup, false);
     return new DailyViewHolder(v);
@@ -46,10 +54,12 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
 
     if (item.getDay() != null) {
       if (item.getDay().getIcon() != null) {
+        viewHolder.icon.setImageDrawable(mContext.getDrawable(MyUtil.getIcon(item.getDay().getIcon())));
         // todo: seticon here
       }
       viewHolder.description.setText(item.getDay().getIconPhrase());
     }
+
   }
 
   @Override

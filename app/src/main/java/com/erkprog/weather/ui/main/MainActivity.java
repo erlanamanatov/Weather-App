@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void showData(List<ForecastResponse.DailyForecast> data) {
-    mAdapter = new DailyForecastAdapter(data);
+    mAdapter = new DailyForecastAdapter(data, this);
     dailyRecyclerView.setAdapter(mAdapter);
   }
 

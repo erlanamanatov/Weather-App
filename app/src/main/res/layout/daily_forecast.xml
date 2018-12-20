@@ -3,7 +3,11 @@
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     xmlns:tools="http://schemas.android.com/tools"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    app:cardBackgroundColor="@color/dailyItemColorBackground"
+                                    app:cardCornerRadius="6dp"
+                                    app:cardElevation="6dp">
 
   <android.support.constraint.ConstraintLayout
       android:layout_width="wrap_content"
@@ -15,16 +19,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Date"/>
 
     <ImageView
         android:id="@+id/daily_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width= "@dimen/daily_weather_icon_width"
+        android:layout_height="@dimen/daily_weather_icon_height"
         android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="@+id/daily_date"
         app:layout_constraintTop_toBottomOf="@+id/daily_date"
         app:srcCompat="@drawable/image_placeholder"/>
@@ -35,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="@dimen/temp_day"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="@+id/daily_icon"
         app:layout_constraintTop_toBottomOf="@+id/daily_icon"
         tools:text="Temp Day"/>
@@ -46,6 +52,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="20dp"
         android:textSize="@dimen/temp_night"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="@+id/daily_temp_day"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/daily_temp_day"
@@ -54,6 +61,7 @@
     <TextView
         android:id="@+id/daily_description"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorWhite"
         android:layout_height="17dp"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="@+id/daily_temp_day"
