@@ -11,8 +11,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
   @GET("forecasts/v1/daily/5day/{locId}?apikey=JdP6loNQcFSCuSWop5uNDPZFZx80kmMn")
-//  @GET("forecasts/v1/daily/5day/222844?apikey=JdP6loNQcFSCuSWop5uNDPZFZx80kmMn")
+
   Call<ForecastResponse> get5dayForecast(@Path("locId") String locId);
-//                                         @Query("apikey") Defaults.WEATHER_API_KEY)
-//  @Query("apikey") String sdfs);
 }
