@@ -31,6 +31,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
           if (response.body() != null && response.body().getHeadline() != null) {
             ForecastResponse.Headline headline = response.body().getHeadline();
             mView.showMessage(headline.getText());
+            mView.showData(response.body().getDailyForecasts());
           }
 
         }

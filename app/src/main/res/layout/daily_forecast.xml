@@ -21,7 +21,7 @@
         tools:text="Date"/>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/daily_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="@dimen/temp_day"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/daily_icon"
+        app:layout_constraintTop_toBottomOf="@+id/daily_icon"
         tools:text="Temp Day"/>
 
     <TextView
