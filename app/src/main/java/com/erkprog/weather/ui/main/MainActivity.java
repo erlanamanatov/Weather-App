@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.erkprog.weather.R;
+import com.erkprog.weather.WeatherApplication;
 import com.erkprog.weather.data.entity.ForecastResponse;
 import com.erkprog.weather.data.weatherRepository.ApiClient;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
@@ -26,10 +27,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    mPresenter = new MainPresenter(ApiClient.getClient(this));
+    mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService());
     mPresenter.bind(this);
     mPresenter.loadData();
-
   }
 
   @Override
