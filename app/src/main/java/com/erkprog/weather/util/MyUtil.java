@@ -2,7 +2,33 @@ package com.erkprog.weather.util;
 
 import com.erkprog.weather.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MyUtil {
+
+  private static Date getDate(String stringDate) {
+    if (stringDate == null) {
+      throw new IllegalArgumentException("Parsing error");
+    }
+    Locale locale = new Locale("en");
+//    SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM y H:mm:ss Z", locale);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", locale);
+
+    try {
+      return formatter.parse(stringDate);
+    } catch (ParseException e) {
+      throw new IllegalArgumentException("Parsing error");
+    }
+  }
+
+  public static String getFormattedDate(String resourceDate) throws IllegalArgumentException {
+    SimpleDateFormat formatter = new SimpleDateFormat("MMM d", new Locale("en"));
+    Date date = getDate(resourceDate);
+    return formatter.format(date);
+  }
 
   public static int getIcon(Integer iconId) {
     switch (iconId) {

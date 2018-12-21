@@ -42,7 +42,11 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
   public void onBindViewHolder(@NonNull DailyViewHolder viewHolder, int i) {
 
     DailyForecast item = mData.get(i);
-    viewHolder.date.setText(item.getDate() != null ? item.getDate() : "");
+    try {
+      viewHolder.date.setText(item.getDate() != null ? MyUtil.getFormattedDate(item.getDate()) : "");
+    } catch (IllegalArgumentException e) {
+      viewHolder.date.setText("");
+    }
     if (item.getTemperature() != null) {
       if (item.getTemperature().getMaximum() != null) {
         viewHolder.maxTemp.setText(Double.toString(item.getTemperature().getMaximum().getValue()));
