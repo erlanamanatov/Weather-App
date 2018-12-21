@@ -24,7 +24,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
     }
 
 //    mApiService.get5dayForecast("222844").enqueue(new Callback<ForecastResponse>() {
-    mApiService.getMock5dayForecast().enqueue(new Callback<ForecastResponse>() {
+//    mApiService.getMock5dayForecast().enqueue(new Callback<ForecastResponse>() {
+    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastResponse>() {
       @Override
       public void onResponse(Call<ForecastResponse> call, Response<ForecastResponse> response) {
         if (isViewAttached()) {

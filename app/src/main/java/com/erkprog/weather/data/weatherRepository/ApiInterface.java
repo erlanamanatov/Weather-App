@@ -15,4 +15,7 @@ public interface ApiInterface {
 
   @GET("/simple5day")
   Call<ForecastResponse> getMock5dayForecast();
+
+  @GET("/detailed5day")
+  Call<ForecastResponse> getMock5dayDetailedForecast();
 }

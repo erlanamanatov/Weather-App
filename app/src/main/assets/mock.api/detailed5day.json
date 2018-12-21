@@ -1,0 +1,1170 @@
+{
+  "Headline": {
+    "EffectiveDate": "2018-12-21T07:00:00+06:00",
+    "EffectiveEpochDate": 1545354000,
+    "Severity": 7,
+    "Text": "Not as chilly Friday",
+    "Category": "warmer",
+    "EndDate": "2018-12-21T19:00:00+06:00",
+    "EndEpochDate": 1545397200,
+    "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/extended-weather-forecast/222844?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2018-12-21T07:00:00+06:00",
+      "EpochDate": 1545354000,
+      "Sun": {
+        "Rise": "2018-12-21T08:29:00+06:00",
+        "EpochRise": 1545359340,
+        "Set": "2018-12-21T17:30:00+06:00",
+        "EpochSet": 1545391800
+      },
+      "Moon": {
+        "Rise": "2018-12-21T16:33:00+06:00",
+        "EpochRise": 1545388380,
+        "Set": "2018-12-22T07:39:00+06:00",
+        "EpochSet": 1545442740,
+        "Phase": "WaxingGibbous",
+        "Age": 14
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -8.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": -0.6,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -6.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 0.3,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -6.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": -0.6,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "HoursOfSun": 6.9,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 22,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 2,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "ShortPhrase": "Not as cold",
+        "LongPhrase": "After a cloudy start, sun returns; not as cold",
+        "PrecipitationProbability": 0,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 77,
+            "Localized": "ENE",
+            "English": "ENE"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 24,
+            "Localized": "NNE",
+            "English": "NNE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 31
+      },
+      "Night": {
+        "Icon": 36,
+        "IconPhrase": "Intermittent clouds",
+        "ShortPhrase": "Partly cloudy",
+        "LongPhrase": "Partly cloudy",
+        "PrecipitationProbability": 0,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 0,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 3.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 208,
+            "Localized": "SSW",
+            "English": "SSW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 7.4,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 180,
+            "Localized": "S",
+            "English": "S"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 62
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=1&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-22T07:00:00+06:00",
+      "EpochDate": 1545440400,
+      "Sun": {
+        "Rise": "2018-12-22T08:29:00+06:00",
+        "EpochRise": 1545445740,
+        "Set": "2018-12-22T17:31:00+06:00",
+        "EpochSet": 1545478260
+      },
+      "Moon": {
+        "Rise": "2018-12-22T17:23:00+06:00",
+        "EpochRise": 1545477780,
+        "Set": "2018-12-23T08:47:00+06:00",
+        "EpochSet": 1545533220,
+        "Phase": "Full",
+        "Age": 15
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -4.3,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 1.2,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -1.7,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 1.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -1.7,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 2.2,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "HoursOfSun": 1.2,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 20,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 1,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 7,
+        "IconPhrase": "Cloudy",
+        "ShortPhrase": "Cloudy; chilly",
+        "LongPhrase": "Cloudy; chilly",
+        "PrecipitationProbability": 2,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 0,
+        "IceProbability": 1,
+        "Wind": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 307,
+            "Localized": "NW",
+            "English": "NW"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 323,
+            "Localized": "NW",
+            "English": "NW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 97
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy",
+        "ShortPhrase": "Mostly cloudy",
+        "LongPhrase": "Mostly cloudy",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 22,
+        "IceProbability": 3,
+        "Wind": {
+          "Speed": {
+            "Value": 3.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 4,
+            "Localized": "N",
+            "English": "N"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 345,
+            "Localized": "NNW",
+            "English": "NNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 89
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=2&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=2&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-23T07:00:00+06:00",
+      "EpochDate": 1545526800,
+      "Sun": {
+        "Rise": "2018-12-23T08:30:00+06:00",
+        "EpochRise": 1545532200,
+        "Set": "2018-12-23T17:31:00+06:00",
+        "EpochSet": 1545564660
+      },
+      "Moon": {
+        "Rise": "2018-12-23T18:21:00+06:00",
+        "EpochRise": 1545567660,
+        "Set": "2018-12-24T09:49:00+06:00",
+        "EpochSet": 1545623340,
+        "Phase": "WaningGibbous",
+        "Age": 16
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -6.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.8,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -3.9,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -3.9,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "HoursOfSun": 5.2,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 19,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 2,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "ShortPhrase": "Clouds giving way to some sun",
+        "LongPhrase": "Clouds giving way to some sun",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 24,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 15,
+            "Localized": "NNE",
+            "English": "NNE"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 11,
+            "Localized": "N",
+            "English": "N"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 50
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Partly cloudy",
+        "ShortPhrase": "Partly cloudy",
+        "LongPhrase": "Partly cloudy",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 24,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 1.9,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 142,
+            "Localized": "SE",
+            "English": "SE"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 3.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 135,
+            "Localized": "SE",
+            "English": "SE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 49
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=3&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=3&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-24T07:00:00+06:00",
+      "EpochDate": 1545613200,
+      "Sun": {
+        "Rise": "2018-12-24T08:30:00+06:00",
+        "EpochRise": 1545618600,
+        "Set": "2018-12-24T17:32:00+06:00",
+        "EpochSet": 1545651120
+      },
+      "Moon": {
+        "Rise": "2018-12-24T19:28:00+06:00",
+        "EpochRise": 1545658080,
+        "Set": "2018-12-25T10:42:00+06:00",
+        "EpochSet": 1545712920,
+        "Phase": "WaningGibbous",
+        "Age": 17
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -4.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 2.5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -2.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 5.6,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -2.6,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "HoursOfSun": 5,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 19,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 2,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "ShortPhrase": "Clouds and sun",
+        "LongPhrase": "Clouds and sun",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 25,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 3.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 28,
+            "Localized": "NNE",
+            "English": "NNE"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 337,
+            "Localized": "NNW",
+            "English": "NNW"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 56
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy",
+        "ShortPhrase": "Mostly cloudy",
+        "LongPhrase": "Mostly cloudy",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 25,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 3.7,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 177,
+            "Localized": "S",
+            "English": "S"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 148,
+            "Localized": "SSE",
+            "English": "SSE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 77
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=4&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=4&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-25T07:00:00+06:00",
+      "EpochDate": 1545699600,
+      "Sun": {
+        "Rise": "2018-12-25T08:31:00+06:00",
+        "EpochRise": 1545705060,
+        "Set": "2018-12-25T17:32:00+06:00",
+        "EpochSet": 1545737520
+      },
+      "Moon": {
+        "Rise": "2018-12-25T20:40:00+06:00",
+        "EpochRise": 1545748800,
+        "Set": "2018-12-26T11:27:00+06:00",
+        "EpochSet": 1545802020,
+        "Phase": "WaningGibbous",
+        "Age": 18
+      },
+      "Temperature": {
+        "Minimum": {
+          "Value": -3.5,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperature": {
+        "Minimum": {
+          "Value": -3.8,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 5.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "RealFeelTemperatureShade": {
+        "Minimum": {
+          "Value": -3.8,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 4.2,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "HoursOfSun": 4.4,
+      "DegreeDaySummary": {
+        "Heating": {
+          "Value": 18,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Cooling": {
+          "Value": 0,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "AirAndPollen": [
+        {
+          "Name": "AirQuality",
+          "Value": 0,
+          "Category": "Good",
+          "CategoryValue": 1,
+          "Type": "Ozone"
+        },
+        {
+          "Name": "Grass",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Mold",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Ragweed",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "Tree",
+          "Value": 0,
+          "Category": "Low",
+          "CategoryValue": 1
+        },
+        {
+          "Name": "UVIndex",
+          "Value": 2,
+          "Category": "Low",
+          "CategoryValue": 1
+        }
+      ],
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds",
+        "ShortPhrase": "A blend of sun and clouds",
+        "LongPhrase": "A blend of sun and clouds",
+        "PrecipitationProbability": 25,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 24,
+        "IceProbability": 0,
+        "Wind": {
+          "Speed": {
+            "Value": 5.6,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 88,
+            "Localized": "E",
+            "English": "E"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 9.3,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 122,
+            "Localized": "ESE",
+            "English": "ESE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 57
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy",
+        "ShortPhrase": "Turning cloudy",
+        "LongPhrase": "Turning cloudy",
+        "PrecipitationProbability": 4,
+        "ThunderstormProbability": 0,
+        "RainProbability": 0,
+        "SnowProbability": 2,
+        "IceProbability": 1,
+        "Wind": {
+          "Speed": {
+            "Value": 7.4,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 127,
+            "Localized": "SE",
+            "English": "SE"
+          }
+        },
+        "WindGust": {
+          "Speed": {
+            "Value": 11.1,
+            "Unit": "km/h",
+            "UnitType": 7
+          },
+          "Direction": {
+            "Degrees": 130,
+            "Localized": "SE",
+            "English": "SE"
+          }
+        },
+        "TotalLiquid": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Rain": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "Snow": {
+          "Value": 0,
+          "Unit": "cm",
+          "UnitType": 4
+        },
+        "Ice": {
+          "Value": 0,
+          "Unit": "mm",
+          "UnitType": 3
+        },
+        "HoursOfPrecipitation": 0,
+        "HoursOfRain": 0,
+        "HoursOfSnow": 0,
+        "HoursOfIce": 0,
+        "CloudCover": 40
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=5&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=5&unit=c&lang=en-us"
+    }
+  ]
+}
