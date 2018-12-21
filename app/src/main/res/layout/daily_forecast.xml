@@ -2,16 +2,17 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     xmlns:tools="http://schemas.android.com/tools"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_margin="8dp"
                                     app:cardBackgroundColor="@color/dailyItemColorBackground"
                                     app:cardCornerRadius="6dp"
                                     app:cardElevation="6dp">
 
   <android.support.constraint.ConstraintLayout
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent">
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/daily_date"
@@ -26,46 +27,97 @@
 
     <ImageView
         android:id="@+id/daily_icon"
-        android:layout_width= "@dimen/daily_weather_icon_width"
-        android:layout_height="@dimen/daily_weather_icon_height"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="@+id/daily_date"
-        app:layout_constraintTop_toBottomOf="@+id/daily_date"
+        app:layout_constraintBottom_toBottomOf="@+id/daily_temp_max"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/daily_temp_max"
         app:srcCompat="@drawable/image_placeholder"/>
 
     <TextView
-        android:id="@+id/daily_temp_day"
+        android:id="@+id/daily_temp_max"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/temp_day"
+        android:layout_height="39dp"
+        android:layout_marginTop="14dp"
         android:textColor="@color/colorWhite"
-        app:layout_constraintStart_toStartOf="@+id/daily_icon"
-        app:layout_constraintTop_toBottomOf="@+id/daily_icon"
-        tools:text="Temp Day"/>
+        android:textSize="@dimen/daily_temp_max"
+        app:layout_constraintStart_toStartOf="@+id/daily_date"
+        app:layout_constraintTop_toBottomOf="@+id/daily_date"
+        tools:text="Max"/>
 
     <TextView
-        android:id="@+id/daily_temp_night"
+        android:id="@+id/daily_temp_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="20dp"
-        android:textSize="@dimen/temp_night"
+        android:layout_marginStart="16dp"
         android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="@+id/daily_temp_day"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/daily_temp_day"
-        tools:text="Temp night"/>
+        android:textSize="@dimen/daily_temp_min"
+        app:layout_constraintBottom_toBottomOf="@+id/daily_temp_max"
+        app:layout_constraintStart_toEndOf="@+id/daily_temp_max"
+        tools:text="Min"/>
 
     <TextView
         android:id="@+id/daily_description"
         android:layout_width="wrap_content"
-        android:textColor="@color/colorWhite"
         android:layout_height="17dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="@+id/daily_temp_day"
-        app:layout_constraintTop_toBottomOf="@+id/daily_temp_day"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@+id/daily_temp_max"
+        app:layout_constraintTop_toBottomOf="@+id/daily_temp_max"
         tools:text="Description"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="sunrise/sunset"
+        app:layout_constraintStart_toStartOf="@+id/daily_description"
+        app:layout_constraintTop_toBottomOf="@+id/daily_description"/>
+
+    <TextView
+        android:id="@+id/daily_sunrise_sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        tools:text="9:39, 19:12"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="wind"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="precipitation"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/daily_sunrise_sunset"
+        tools:text="4 km/h"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        tools:text="24%"/>
   </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

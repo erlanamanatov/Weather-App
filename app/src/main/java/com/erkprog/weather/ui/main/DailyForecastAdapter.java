@@ -3,7 +3,6 @@ package com.erkprog.weather.ui.main;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import com.erkprog.weather.R;
 import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.util.MyUtil;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdapter
@@ -49,10 +49,10 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
     }
     if (item.getTemperature() != null) {
       if (item.getTemperature().getMaximum() != null) {
-        viewHolder.maxTemp.setText(Double.toString(item.getTemperature().getMaximum().getValue()));
+        viewHolder.maxTemp.setText(Double.toString(item.getTemperature().getMaximum().getValue()) + " \u2103");
       }
       if (item.getTemperature().getMinimum() != null) {
-        viewHolder.minTemp.setText(Double.toString(item.getTemperature().getMinimum().getValue()));
+        viewHolder.minTemp.setText(Double.toString(item.getTemperature().getMinimum().getValue()) + " \u00B0");
       }
     }
 
@@ -80,8 +80,8 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
     DailyViewHolder(@NonNull View itemView) {
       super(itemView);
       date = itemView.findViewById(R.id.daily_date);
-      maxTemp = itemView.findViewById(R.id.daily_temp_day);
-      minTemp = itemView.findViewById(R.id.daily_temp_night);
+      maxTemp = itemView.findViewById(R.id.daily_temp_max);
+      minTemp = itemView.findViewById(R.id.daily_temp_min);
       description = itemView.findViewById(R.id.daily_description);
       icon = itemView.findViewById(R.id.daily_icon);
     }

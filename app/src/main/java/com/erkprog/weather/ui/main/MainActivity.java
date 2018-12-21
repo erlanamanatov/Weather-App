@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   private void initRecyclerView() {
     dailyRecyclerView = findViewById(R.id.daily_forecast_recycler_view);
     LinearLayoutManager layoutManager
-        = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        = new LinearLayoutManager(this);
     dailyRecyclerView.setLayoutManager(layoutManager);
   }
 
