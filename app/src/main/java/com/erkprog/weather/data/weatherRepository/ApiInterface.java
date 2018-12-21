@@ -1,5 +1,6 @@
 package com.erkprog.weather.data.weatherRepository;
 
+import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.ForecastResponse;
 
 import retrofit2.Call;
@@ -17,5 +18,5 @@ public interface ApiInterface {
   Call<ForecastResponse> getMock5dayForecast();
 
   @GET("/detailed5day")
-  Call<ForecastResponse> getMock5dayDetailedForecast();
+  Call<ForecastDetailed> getMock5dayDetailedForecast();
 }

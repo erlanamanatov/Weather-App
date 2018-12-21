@@ -1,6 +1,6 @@
 package com.erkprog.weather.ui.main;
 
-import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.data.entity.DailyForecast;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public interface MainActivityContract {
 
   interface View {
 
-    void showData(List<ForecastResponse.DailyForecast> data);
+    void showData(List<DailyForecast> data);
 
     void showMessage(String message);
 

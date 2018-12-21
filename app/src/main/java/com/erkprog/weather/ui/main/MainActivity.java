@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.erkprog.weather.R;
 import com.erkprog.weather.WeatherApplication;
-import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.data.entity.DailyForecast;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
-  public void showData(List<ForecastResponse.DailyForecast> data) {
+  public void showData(List<DailyForecast> data) {
     mAdapter = new DailyForecastAdapter(data, this);
     dailyRecyclerView.setAdapter(mAdapter);
   }
@@ -50,5 +50,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   @Override
   public void showMessage(String message) {
     Log.d(TAG, "showMessage: " + message);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    mPresenter.unbind();
   }
 }

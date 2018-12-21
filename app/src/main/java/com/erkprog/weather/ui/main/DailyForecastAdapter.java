@@ -11,20 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.erkprog.weather.R;
-import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.util.MyUtil;
 
-import java.nio.DoubleBuffer;
 import java.util.List;
 
 public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdapter
     .DailyViewHolder> {
 
   private static final String TAG = "DailyForecastAdapter";
-  private List<ForecastResponse.DailyForecast> mData;
+  private List<DailyForecast> mData;
   private Context mContext;
 
-  DailyForecastAdapter(List<ForecastResponse.DailyForecast> data, Context context) {
+  DailyForecastAdapter(List<DailyForecast> data, Context context) {
     mData = data;
     mContext = context;
   }
@@ -42,7 +41,7 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
   @Override
   public void onBindViewHolder(@NonNull DailyViewHolder viewHolder, int i) {
 
-    ForecastResponse.DailyForecast item = mData.get(i);
+    DailyForecast item = mData.get(i);
     viewHolder.date.setText(item.getDate() != null ? item.getDate() : "");
     if (item.getTemperature() != null) {
       if (item.getTemperature().getMaximum() != null) {

@@ -1,6 +1,7 @@
 package com.erkprog.weather.ui.main;
 
-import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.data.entity.ForecastDetailed;
+import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 
 import retrofit2.Call;
@@ -25,13 +26,13 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
 //    mApiService.get5dayForecast("222844").enqueue(new Callback<ForecastResponse>() {
 //    mApiService.getMock5dayForecast().enqueue(new Callback<ForecastResponse>() {
-    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastResponse>() {
+    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
       @Override
-      public void onResponse(Call<ForecastResponse> call, Response<ForecastResponse> response) {
+      public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
           mView.showMessage("successfull response");
           if (response.body() != null && response.body().getHeadline() != null) {
-            ForecastResponse.Headline headline = response.body().getHeadline();
+            Headline headline = response.body().getHeadline();
             mView.showMessage(headline.getText());
             mView.showData(response.body().getDailyForecasts());
           }
@@ -39,7 +40,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       }
 
       @Override
-      public void onFailure(Call<ForecastResponse> call, Throwable t) {
+      public void onFailure(Call<ForecastDetailed> call, Throwable t) {
         if (isViewAttached()) {
           mView.showMessage(" Failure " + t.getMessage());
         }
