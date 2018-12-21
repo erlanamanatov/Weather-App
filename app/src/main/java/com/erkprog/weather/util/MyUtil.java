@@ -2,6 +2,8 @@ package com.erkprog.weather.util;
 
 
 import com.erkprog.weather.R;
+import com.erkprog.weather.data.entity.Sun;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,8 +26,26 @@ public class MyUtil {
   }
 
   public static String getFormattedDate(String resourceDate) throws IllegalArgumentException {
-    SimpleDateFormat formatter = new SimpleDateFormat("MMM d", new Locale("en"));
+    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d", new Locale("en"));
     Date date = getDate(resourceDate);
+    return formatter.format(date);
+  }
+
+  public static String getSunriseSunset(Sun sun) {
+    if (sun == null) {
+      return "";
+    }
+
+    try {
+      return getFormattedForSun(sun.getRise()) + ", " + getFormattedForSun(sun.getSet());
+    } catch (IllegalArgumentException e){
+      return "";
+    }
+  }
+
+  private static String getFormattedForSun(String sunTime) throws IllegalArgumentException {
+    SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a", new Locale("en"));
+    Date date = getDate(sunTime);
     return formatter.format(date);
   }
 

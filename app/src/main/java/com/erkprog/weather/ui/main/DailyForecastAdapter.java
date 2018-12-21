@@ -2,6 +2,7 @@ package com.erkprog.weather.ui.main;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,9 +61,21 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
       if (item.getDay().getIcon() != null) {
         viewHolder.icon.setImageDrawable(mContext.getDrawable(MyUtil.getIcon(item.getDay().getIcon())));
       }
+      if (item.getDay().getWind() != null && item.getDay().getWind().getSpeed() != null) {
+        viewHolder.wind.setText(Double.toString(item.getDay().getWind().getSpeed().getValue()) +
+            " " + item.getDay().getWind().getSpeed().getUnit());
+      }
       viewHolder.description.setText(item.getDay().getIconPhrase());
+      viewHolder.precipitation.setText(
+          Integer.toString(item.getDay().getPrecipitationProbability()) + "%");
     }
+    viewHolder.sunriseSunset.setText(MyUtil.getSunriseSunset(item.getSun()));
 
+    if (i == 0) {
+      ((CardView) viewHolder.itemView).setCardBackgroundColor(
+          mContext.getResources().getColor(R.color.currentDayBackground));
+      viewHolder.date.setText(mContext.getString(R.string.today));
+    }
   }
 
   @Override
@@ -76,14 +89,22 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
     private TextView maxTemp;
     private TextView minTemp;
     private TextView description;
+    private TextView sunriseSunset;
+    private TextView wind;
+    private TextView precipitation;
+    View v;
 
     DailyViewHolder(@NonNull View itemView) {
       super(itemView);
+      v = itemView;
       date = itemView.findViewById(R.id.daily_date);
       maxTemp = itemView.findViewById(R.id.daily_temp_max);
       minTemp = itemView.findViewById(R.id.daily_temp_min);
       description = itemView.findViewById(R.id.daily_description);
       icon = itemView.findViewById(R.id.daily_icon);
+      sunriseSunset = itemView.findViewById(R.id.daily_sunrise_sunset);
+      wind = itemView.findViewById(R.id.daily_wind);
+      precipitation = itemView.findViewById(R.id.daily_precipitation);
     }
   }
 }

@@ -5,6 +5,6 @@
   <dimen name="daily_description">16sp</dimen>
   <dimen name="daily_date">16sp</dimen>
 
-  <dimen name="daily_weather_icon_height">60dp</dimen>
-  <dimen name="daily_weather_icon_width">90dp</dimen>
+  <dimen name="daily_weather_icon_height">70dp</dimen>
+  <dimen name="daily_weather_icon_width">120dp</dimen>
 </resources>

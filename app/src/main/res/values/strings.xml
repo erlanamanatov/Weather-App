@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">Weather</string>
+  <string name="today">Today</string>
+  <string name="sunrise_sunset">sunrise/sunset</string>
+  <string name="wind">wind</string>
+  <string name="precipitation">precipitation</string>
 </resources>
