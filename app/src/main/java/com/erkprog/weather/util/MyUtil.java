@@ -1,7 +1,7 @@
 package com.erkprog.weather.util;
 
-import com.erkprog.weather.R;
 
+import com.erkprog.weather.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,9 +14,8 @@ public class MyUtil {
       throw new IllegalArgumentException("Parsing error");
     }
     Locale locale = new Locale("en");
-//    SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM y H:mm:ss Z", locale);
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", locale);
-
+    stringDate = stringDate.substring(0, 20);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", locale);
     try {
       return formatter.parse(stringDate);
     } catch (ParseException e) {

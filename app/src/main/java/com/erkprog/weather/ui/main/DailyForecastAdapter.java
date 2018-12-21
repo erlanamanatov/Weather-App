@@ -59,7 +59,6 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
     if (item.getDay() != null) {
       if (item.getDay().getIcon() != null) {
         viewHolder.icon.setImageDrawable(mContext.getDrawable(MyUtil.getIcon(item.getDay().getIcon())));
-        // todo: seticon here
       }
       viewHolder.description.setText(item.getDay().getIconPhrase());
     }
