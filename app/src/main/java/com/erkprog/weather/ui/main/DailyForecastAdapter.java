@@ -14,6 +14,7 @@ import com.erkprog.weather.R;
 import com.erkprog.weather.data.entity.ForecastResponse;
 import com.erkprog.weather.util.MyUtil;
 
+import java.nio.DoubleBuffer;
 import java.util.List;
 
 public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdapter
@@ -45,10 +46,10 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
     viewHolder.date.setText(item.getDate() != null ? item.getDate() : "");
     if (item.getTemperature() != null) {
       if (item.getTemperature().getMaximum() != null) {
-        viewHolder.maxTemp.setText(Integer.toString(item.getTemperature().getMaximum().getValue()));
+        viewHolder.maxTemp.setText(Double.toString(item.getTemperature().getMaximum().getValue()));
       }
       if (item.getTemperature().getMinimum() != null) {
-        viewHolder.minTemp.setText(Integer.toString(item.getTemperature().getMinimum().getValue()));
+        viewHolder.minTemp.setText(Double.toString(item.getTemperature().getMinimum().getValue()));
       }
     }
 

@@ -1,0 +1,160 @@
+{
+  "Headline": {
+    "EffectiveDate": "2018-12-21T07:00:00+06:00",
+    "EffectiveEpochDate": 1545354000,
+    "Severity": 7,
+    "Text": "Not as chilly Friday",
+    "Category": "warmer",
+    "EndDate": "2018-12-21T19:00:00+06:00",
+    "EndEpochDate": 1545397200,
+    "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/extended-weather-forecast/222844?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2018-12-21T07:00:00+06:00",
+      "EpochDate": 1545354000,
+      "Temperature": {
+        "Minimum": {
+          "Value": -8.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": -0.6,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds"
+      },
+      "Night": {
+        "Icon": 36,
+        "IconPhrase": "Intermittent clouds"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=1&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-22T07:00:00+06:00",
+      "EpochDate": 1545440400,
+      "Temperature": {
+        "Minimum": {
+          "Value": -4.3,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 1.2,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 7,
+        "IconPhrase": "Cloudy"
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=2&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=2&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-23T07:00:00+06:00",
+      "EpochDate": 1545526800,
+      "Temperature": {
+        "Minimum": {
+          "Value": -6.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.8,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds"
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Partly cloudy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=3&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=3&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-24T07:00:00+06:00",
+      "EpochDate": 1545613200,
+      "Temperature": {
+        "Minimum": {
+          "Value": -4.1,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 2.5,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds"
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=4&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=4&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2018-12-25T07:00:00+06:00",
+      "EpochDate": 1545699600,
+      "Temperature": {
+        "Minimum": {
+          "Value": -3.5,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 3.4,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 4,
+        "IconPhrase": "Intermittent clouds"
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=5&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/kg/bishkek/222844/daily-weather-forecast/222844?day=5&unit=c&lang=en-us"
+    }
+  ]
+}

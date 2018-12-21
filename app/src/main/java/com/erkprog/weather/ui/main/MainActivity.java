@@ -10,15 +10,8 @@ import android.widget.Toast;
 import com.erkprog.weather.R;
 import com.erkprog.weather.WeatherApplication;
 import com.erkprog.weather.data.entity.ForecastResponse;
-import com.erkprog.weather.data.weatherRepository.ApiClient;
-import com.erkprog.weather.data.weatherRepository.ApiInterface;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View{
 
