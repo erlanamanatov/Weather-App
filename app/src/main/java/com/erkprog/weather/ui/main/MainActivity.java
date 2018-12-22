@@ -24,6 +24,7 @@ import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   RecyclerView dailyRecyclerView;
   DailyForecastAdapter mAdapter;
   Spinner citySpinner;
+  CityAdapter cityAdapter;
+  List<City> cityList;
   ProgressBar gpsProgressBar;
   ImageView getLocationIcon;
   TextView gpsInfoText;
@@ -79,12 +82,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   private void initSpinner() {
     citySpinner = findViewById(R.id.main_city_spinner);
-    final CityAdapter adapter = new CityAdapter(this, R.layout.spinner_city_item, Defaults.CITY_LIST);
-    citySpinner.setAdapter(adapter);
+    cityList = new ArrayList<>(Defaults.CITY_LIST);
+    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+    citySpinner.setAdapter(cityAdapter);
     citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mPresenter.onCityClicked(adapter.getItem(position));
+        mPresenter.onCitySelected(cityAdapter.getItem(position));
       }
 
       @Override
@@ -140,6 +144,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     getLocationIcon.setEnabled(true);
     gpsProgressBar.setVisibility(View.GONE);
     gpsInfoText.setVisibility(View.GONE);
+  }
+
+  @Override
+  public void addNewCity(City city) {
+    cityList.add(city);
+    cityAdapter.notifyDataSetChanged();
+    citySpinner.setSelection(cityList.size() - 1);
   }
 
   @Override

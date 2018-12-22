@@ -17,6 +17,10 @@ public interface ApiInterface {
                                          @Query("details") Boolean details,
                                          @Query("metric") Boolean metric);
 
+  @GET("locations/v1/cities/geoposition/search")
+  Call<GeopositionResponse> getCityByGeoposition(@Query("apikey") String apikey,
+                                                 @Query("q") String latLong);
+
   @GET("/simple5day")
   Call<ForecastResponse> getMock5dayForecast();
 

@@ -17,6 +17,8 @@ public interface MainActivityContract {
 
     void setIconsDefaultState();
 
+    void addNewCity(City city);
+
   }
 
   interface Presenter {
@@ -30,6 +32,6 @@ public interface MainActivityContract {
 
     void getCurrentLocation();
 
-    void onCityClicked(City city);
+    void onCitySelected(City city);
   }
 }

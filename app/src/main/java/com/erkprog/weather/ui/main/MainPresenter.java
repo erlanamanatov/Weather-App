@@ -81,6 +81,9 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
+    String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
+
+//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
     mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
       @Override
       public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
@@ -89,6 +92,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
           if (response.body() != null) {
             City newCity = MyUtil.getCity(response.body());
             Log.d(TAG, "geo response: " + newCity);
+            mView.addNewCity(newCity);
           }
         }
       }
@@ -102,7 +106,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
   }
 
   @Override
-  public void onCityClicked(City city) {
+  public void onCitySelected(City city) {
     loadData(city.getKey());
   }
 
