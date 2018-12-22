@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.erkprog.weather.R;
 import com.erkprog.weather.WeatherApplication;
 import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
+import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
 
 import java.util.List;
@@ -36,16 +39,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    initRecyclerView();
-
     mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
         new LocationHelper(this));
     mPresenter.bind(this);
-    mPresenter.loadData();
 
-    citySpinner = findViewById(R.id.main_city_spinner);
-    CityAdapter adapter = new CityAdapter(this, R.layout.spinner_city_item, Defaults.CITY_LIST);
-    citySpinner.setAdapter(adapter);
+    initRecyclerView();
+    initSpinner();
+
+    if (savedInstanceState == null) {
+      mPresenter.loadData(String.valueOf(((City) citySpinner.getSelectedItem()).getKey()));
+    }
+
+//    mPresenter.loadData();
 
 //
 //    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission
@@ -55,6 +60,24 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 //    } else {
 //      requestGpsPermission();
 //    }
+  }
+
+  private void initSpinner() {
+    citySpinner = findViewById(R.id.main_city_spinner);
+    final CityAdapter adapter = new CityAdapter(this, R.layout.spinner_city_item, Defaults.CITY_LIST);
+    citySpinner.setAdapter(adapter);
+    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mPresenter.onCityClicked(adapter.getItem(position));
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+
+      }
+    });
+
   }
 
 
@@ -69,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   public void showData(List<DailyForecast> data) {
     mAdapter = new DailyForecastAdapter(data, this);
     dailyRecyclerView.setAdapter(mAdapter);
+    mAdapter.notifyDataSetChanged();
   }
 
   @Override

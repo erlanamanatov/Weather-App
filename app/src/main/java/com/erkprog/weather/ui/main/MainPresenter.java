@@ -4,6 +4,7 @@ import android.location.Location;
 
 import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
+import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
@@ -24,14 +25,14 @@ public class MainPresenter implements MainActivityContract.Presenter {
   }
 
   @Override
-  public void loadData() {
+  public void loadData(String cityKeyId) {
 
     if (mApiService == null) {
       return;
     }
 
 //    mApiService.get5dayForecast(
-//        "222844",
+//        cityKeyId,
 //        Defaults.WEATHER_API_KEY,
 //        Defaults.WEATHER_DETAILED_FORECAST,
 //        Defaults.WEATHER_METRIC_UNIT)
@@ -68,6 +69,11 @@ public class MainPresenter implements MainActivityContract.Presenter {
         }
       }
     });
+  }
+
+  @Override
+  public void onCityClicked(City city) {
+    loadData(String.valueOf(city.getKey()));
   }
 
   @Override

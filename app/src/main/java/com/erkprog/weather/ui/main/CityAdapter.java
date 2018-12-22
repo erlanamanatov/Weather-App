@@ -21,11 +21,11 @@ public class CityAdapter extends ArrayAdapter<City> {
   private Context mContext;
   private int mResource;
 
-  public CityAdapter(@NonNull Context context, @LayoutRes int resource,
-                     @NonNull List objects) {
-    super(context, resource, 0, objects);
+  CityAdapter(@NonNull Context context, @LayoutRes int resource,
+              @NonNull List<City> cityList) {
+    super(context, resource, 0, cityList);
     mContext = context;
-    mCities = objects;
+    mCities = cityList;
     mResource = resource;
   }
 
@@ -46,9 +46,13 @@ public class CityAdapter extends ArrayAdapter<City> {
     TextView cityName = view.findViewById(R.id.spinner_city_name);
     City city = mCities.get(position);
     String name = String.format("%s, %s", city.getName(), city.getCountry());
-//    String name = city.getName() + ", " + city.getCountry();
     cityName.setText(name);
     return view;
   }
 
+  @Nullable
+  @Override
+  public City getItem(int position) {
+    return mCities.get(position);
+  }
 }
