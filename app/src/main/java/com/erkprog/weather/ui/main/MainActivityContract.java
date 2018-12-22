@@ -22,5 +22,7 @@ public interface MainActivityContract {
     void unbind();
 
     boolean isViewAttached();
+
+    void getCurrentLocation();
   }
 }

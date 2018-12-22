@@ -1,6 +1,9 @@
 package com.erkprog.weather.ui.main;
 
+import android.location.Location;
+
 import com.erkprog.weather.data.Defaults;
+import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
@@ -13,9 +16,11 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
   private ApiInterface mApiService;
   private MainActivityContract.View mView;
+  private LocationHelper mLocationHelper;
 
-  MainPresenter(ApiInterface service) {
+  MainPresenter(ApiInterface service, LocationHelper locationHelper) {
     mApiService = service;
+    mLocationHelper = locationHelper;
   }
 
   @Override
@@ -51,7 +56,18 @@ public class MainPresenter implements MainActivityContract.Presenter {
         }
       }
     });
+  }
 
+  @Override
+  public void getCurrentLocation() {
+    mLocationHelper.getLocation(new LocationHelper.OnLocationChangedListener() {
+      @Override
+      public void onLocationChanged(Location location) {
+        if (isViewAttached()) {
+          mView.showMessage("" + location.getLatitude() + ", " + location.getLongitude());
+        }
+      }
+    });
   }
 
   @Override
