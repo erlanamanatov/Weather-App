@@ -148,9 +148,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void addNewCity(City city) {
-    cityList.add(city);
-    cityAdapter.notifyDataSetChanged();
-    citySpinner.setSelection(cityList.size() - 1);
+    if (!cityList.contains(city)) {
+      cityList.add(city);
+      cityAdapter.notifyDataSetChanged();
+      citySpinner.setSelection(cityList.size() - 1);
+    } else {
+      citySpinner.setSelection(cityList.indexOf(city));
+    }
   }
 
   @Override
