@@ -7,4 +7,7 @@
 
   <dimen name="daily_weather_icon_height">70dp</dimen>
   <dimen name="daily_weather_icon_width">120dp</dimen>
+
+  <dimen name="gps_loading_progress_size">24dp</dimen>
+  <dimen name="gps_textinfo_size">12sp</dimen>
 </resources>

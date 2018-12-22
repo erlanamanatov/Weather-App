@@ -61,10 +61,12 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
   @Override
   public void getCurrentLocation() {
+    mView.onGettingLocation();
     mLocationHelper.getLocation(new LocationHelper.OnLocationChangedListener() {
       @Override
       public void onLocationChanged(Location location) {
         if (isViewAttached()) {
+          mView.setIconsDefaultState();
           mView.showMessage("" + location.getLatitude() + ", " + location.getLongitude());
         }
       }

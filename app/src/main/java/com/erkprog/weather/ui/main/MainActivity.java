@@ -11,7 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erkprog.weather.R;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   RecyclerView dailyRecyclerView;
   DailyForecastAdapter mAdapter;
   Spinner citySpinner;
+  ProgressBar gpsProgressBar;
+  ImageView getLocationIcon;
+  TextView gpsInfoText;
 
 
   @Override
@@ -43,23 +49,32 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         new LocationHelper(this));
     mPresenter.bind(this);
 
-    initRecyclerView();
-    initSpinner();
+    init();
 
     if (savedInstanceState == null) {
       mPresenter.loadData(String.valueOf(((City) citySpinner.getSelectedItem()).getKey()));
     }
 
-//    mPresenter.loadData();
 
-//
-//    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission
-//        .ACCESS_FINE_LOCATION);
-//    if (permission == PackageManager.PERMISSION_GRANTED) {
-//      getLocation();
-//    } else {
-//      requestGpsPermission();
-//    }
+  }
+
+  private void init() {
+    initRecyclerView();
+    initSpinner();
+    gpsProgressBar = findViewById(R.id.main_gps_progress);
+    gpsInfoText = findViewById(R.id.main_gps_textinfo);
+    getLocationIcon = findViewById(R.id.get_location_img);
+    setIconsDefaultState();
+    getLocationIcon.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+          mPresenter.getCurrentLocation();
+        } else {
+          requestGpsPermission();
+        }
+      }
+    });
   }
 
   private void initSpinner() {
@@ -108,11 +123,23 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   private void requestGpsPermission() {
-    ActivityCompat.requestPermissions(
-        this,
-        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-        GPS_PERMISSION_CODE
-    );
+    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, GPS_PERMISSION_CODE);
+  }
+
+  @Override
+  public void onGettingLocation() {
+    getLocationIcon.setVisibility(View.INVISIBLE);
+    getLocationIcon.setEnabled(false);
+    gpsProgressBar.setVisibility(View.VISIBLE);
+    gpsInfoText.setVisibility(View.VISIBLE);
+  }
+
+  @Override
+  public void setIconsDefaultState() {
+    getLocationIcon.setVisibility(View.VISIBLE);
+    getLocationIcon.setEnabled(true);
+    gpsProgressBar.setVisibility(View.GONE);
+    gpsInfoText.setVisibility(View.GONE);
   }
 
   @Override
@@ -121,18 +148,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     if (requestCode == GPS_PERMISSION_CODE) {
       if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-        getLocation();
+        mPresenter.getCurrentLocation();
       } else {
         Toast.makeText(this, "Location Permission denied", Toast.LENGTH_SHORT).show();
       }
     }
   }
 
-  private void getLocation() {
-    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission
-        .ACCESS_FINE_LOCATION);
-    if (permission == PackageManager.PERMISSION_GRANTED) {
-      mPresenter.getCurrentLocation();
-    }
-  }
 }

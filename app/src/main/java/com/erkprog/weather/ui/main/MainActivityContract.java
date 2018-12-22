@@ -13,6 +13,10 @@ public interface MainActivityContract {
 
     void showMessage(String message);
 
+    void onGettingLocation();
+
+    void setIconsDefaultState();
+
   }
 
   interface Presenter {
