@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.erkprog.weather.R;
 import com.erkprog.weather.WeatherApplication;
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.DailyForecast;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   MainActivityContract.Presenter mPresenter;
   RecyclerView dailyRecyclerView;
   DailyForecastAdapter mAdapter;
+  Spinner citySpinner;
 
 
   @Override
@@ -40,14 +43,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     mPresenter.bind(this);
     mPresenter.loadData();
 
+    citySpinner = findViewById(R.id.main_city_spinner);
+    CityAdapter adapter = new CityAdapter(this, R.layout.spinner_city_item, Defaults.CITY_LIST);
+    citySpinner.setAdapter(adapter);
 
-    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission
-        .ACCESS_FINE_LOCATION);
-    if (permission == PackageManager.PERMISSION_GRANTED) {
-      getLocation();
-    } else {
-      requestGpsPermission();
-    }
+//
+//    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission
+//        .ACCESS_FINE_LOCATION);
+//    if (permission == PackageManager.PERMISSION_GRANTED) {
+//      getLocation();
+//    } else {
+//      requestGpsPermission();
+//    }
   }
 
 
