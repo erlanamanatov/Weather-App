@@ -1,5 +1,6 @@
 package com.erkprog.weather.ui.main;
 
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
@@ -24,8 +25,12 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-//    mApiService.get5dayForecast("222844").enqueue(new Callback<ForecastResponse>() {
-//    mApiService.getMock5dayForecast().enqueue(new Callback<ForecastResponse>() {
+//    mApiService.get5dayForecast(
+//        "222844",
+//        Defaults.WEATHER_API_KEY,
+//        Defaults.WEATHER_DETAILED_FORECAST,
+//        Defaults.WEATHER_METRIC_UNIT)
+//        .enqueue(new Callback<ForecastDetailed>() {
     mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
