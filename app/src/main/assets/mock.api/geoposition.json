@@ -1,0 +1,13 @@
+{
+  "Version": 1,
+  "Key": "222844",
+  "EnglishName": "Bishkek",
+  "Country": {
+    "ID": "KG",
+    "EnglishName": "Kyrgyzstan"
+  },
+  "GeoPosition": {
+    "Latitude": 42.87,
+    "Longitude": 74.588
+    }
+}

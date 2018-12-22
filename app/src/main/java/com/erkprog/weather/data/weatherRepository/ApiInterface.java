@@ -2,6 +2,7 @@ package com.erkprog.weather.data.weatherRepository;
 
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.ForecastResponse;
+import com.erkprog.weather.data.entity.GeopositionResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -21,4 +22,7 @@ public interface ApiInterface {
 
   @GET("/detailed5day")
   Call<ForecastDetailed> getMock5dayDetailedForecast();
+
+  @GET("/geoposition")
+  Call<GeopositionResponse> getMockGeoPosition();
 }

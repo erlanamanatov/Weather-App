@@ -1,7 +1,11 @@
 package com.erkprog.weather.util;
 
 
+import android.support.annotation.Nullable;
+
 import com.erkprog.weather.R;
+import com.erkprog.weather.data.entity.City;
+import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.entity.Sun;
 
 import java.text.ParseException;
@@ -38,7 +42,7 @@ public class MyUtil {
 
     try {
       return getFormattedForSun(sun.getRise()) + ", " + getFormattedForSun(sun.getSet());
-    } catch (IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       return "";
     }
   }
@@ -134,5 +138,23 @@ public class MyUtil {
       default:
         return R.drawable.image_placeholder;
     }
+  }
+
+  @Nullable
+  public static City getCity(GeopositionResponse response) {
+    String cityName = response.getEnglishName();
+    if (cityName == null) {
+      return null;
+    }
+
+    String key = response.getKey();
+    String countryName = "";
+    if (response.getCountry() != null) {
+      countryName = response.getCountry().getEnglishName();
+    }
+    if (response.getGeoPosition() != null) {
+      return new City(key, cityName, countryName, response.getGeoPosition().getLatitude(), response.getGeoPosition().getLongitude());
+    }
+    return null;
   }
 }

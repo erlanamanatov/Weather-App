@@ -2,15 +2,15 @@ package com.erkprog.weather.data.entity;
 
 public class City {
   private String name;
-  private int key;
-  private String country;
+  private String key;
+  private String countryName;
   private double latitude;
   private double longitude;
 
-  public City(int key, String name, String country, double latitude, double longitude) {
+  public City(String key, String name, String countryName, double latitude, double longitude) {
     this.name = name;
     this.key = key;
-    this.country = country;
+    this.countryName = countryName;
     this.latitude = latitude;
     this.longitude = longitude;
   }
@@ -23,20 +23,20 @@ public class City {
     this.name = name;
   }
 
-  public int getKey() {
+  public String getKey() {
     return key;
   }
 
-  public void setKey(int key) {
+  public void setKey(String key) {
     this.key = key;
   }
 
-  public String getCountry() {
-    return country;
+  public String getCountryName() {
+    return countryName;
   }
 
-  public void setCountry(String country) {
-    this.country = country;
+  public void setCountryName(String countryName) {
+    this.countryName = countryName;
   }
 
   public double getLatitude() {
@@ -60,7 +60,7 @@ public class City {
     return "City{" +
         "name='" + name + '\'' +
         ", key=" + key +
-        ", country='" + country + '\'' +
+        ", countryName='" + countryName + '\'' +
         ", latitude=" + latitude +
         ", longitude=" + longitude +
         '}';

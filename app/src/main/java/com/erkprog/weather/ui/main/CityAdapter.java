@@ -45,7 +45,7 @@ public class CityAdapter extends ArrayAdapter<City> {
     final View view = LayoutInflater.from(mContext).inflate(mResource, parent, false);
     TextView cityName = view.findViewById(R.id.spinner_city_name);
     City city = mCities.get(position);
-    String name = String.format("%s, %s", city.getName(), city.getCountry());
+    String name = String.format("%s, %s", city.getName(), city.getCountryName());
     cityName.setText(name);
     return view;
   }

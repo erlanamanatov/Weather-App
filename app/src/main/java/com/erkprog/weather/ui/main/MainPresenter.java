@@ -1,19 +1,23 @@
 package com.erkprog.weather.ui.main;
 
 import android.location.Location;
+import android.util.Log;
 
 import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.ForecastDetailed;
+import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
+import com.erkprog.weather.util.MyUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainPresenter implements MainActivityContract.Presenter {
+  private static final String TAG = "MainPresenter";
 
   private ApiInterface mApiService;
   private MainActivityContract.View mView;
@@ -66,16 +70,40 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onLocationChanged(Location location) {
         if (isViewAttached()) {
-          mView.setIconsDefaultState();
-          mView.showMessage("" + location.getLatitude() + ", " + location.getLongitude());
+          getCity(location.getLatitude(), location.getLongitude());
         }
+      }
+    });
+  }
+
+  private void getCity(double latitude, double longitude) {
+    if (mApiService == null) {
+      return;
+    }
+
+    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
+      @Override
+      public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
+        if (isViewAttached()) {
+          mView.setIconsDefaultState();
+          if (response.body() != null) {
+            City newCity = MyUtil.getCity(response.body());
+            Log.d(TAG, "geo response: " + newCity);
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Call<GeopositionResponse> call, Throwable t) {
+        mView.setIconsDefaultState();
+        mView.showMessage("Geoposition failure" + t.getMessage());
       }
     });
   }
 
   @Override
   public void onCityClicked(City city) {
-    loadData(String.valueOf(city.getKey()));
+    loadData(city.getKey());
   }
 
   @Override
