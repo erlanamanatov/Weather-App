@@ -3,7 +3,6 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
-import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.ForecastDetailed;
@@ -45,10 +44,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
-          mView.showMessage("successfull response");
           if (response.body() != null && response.body().getHeadline() != null) {
             Headline headline = response.body().getHeadline();
-            mView.showMessage(headline.getText());
             mView.showData(response.body().getDailyForecasts());
           }
         }
@@ -90,17 +87,23 @@ public class MainPresenter implements MainActivityContract.Presenter {
         if (isViewAttached()) {
           mView.setIconsDefaultState();
           if (response.body() != null) {
-            City newCity = MyUtil.getCity(response.body());
-            Log.d(TAG, "geo response: " + newCity);
-            mView.addNewCity(newCity);
+            City newCity = MyUtil.formCity(response.body());
+            if (newCity != null) {
+              Log.d(TAG, "geo response: " + newCity);
+              mView.addNewCity(newCity);
+            } else {
+              mView.showMessage("Error getting city from georesponse");
+            }
           }
         }
       }
 
       @Override
       public void onFailure(Call<GeopositionResponse> call, Throwable t) {
-        mView.setIconsDefaultState();
-        mView.showMessage("Geoposition failure" + t.getMessage());
+        if (isViewAttached()) {
+          mView.setIconsDefaultState();
+          mView.showMessage("Geoposition failure" + t.getMessage());
+        }
       }
     });
   }

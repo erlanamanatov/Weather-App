@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   ImageView getLocationIcon;
   TextView gpsInfoText;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -57,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     if (savedInstanceState == null) {
       mPresenter.loadData(String.valueOf(((City) citySpinner.getSelectedItem()).getKey()));
     }
-
-
   }
 
   private void init() {
@@ -93,12 +90,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
       @Override
       public void onNothingSelected(AdapterView<?> parent) {
-
       }
     });
-
   }
-
 
   private void initRecyclerView() {
     dailyRecyclerView = findViewById(R.id.daily_forecast_recycler_view);
@@ -169,5 +163,4 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
       }
     }
   }
-
 }

@@ -24,5 +24,4 @@ public class GeoPosition {
   public void setLongitude(Double longitude) {
     this.longitude = longitude;
   }
-
 }

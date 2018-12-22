@@ -141,7 +141,7 @@ public class MyUtil {
   }
 
   @Nullable
-  public static City getCity(GeopositionResponse response) {
+  public static City formCity(GeopositionResponse response) {
     String cityName = response.getEnglishName();
     if (cityName == null) {
       return null;
