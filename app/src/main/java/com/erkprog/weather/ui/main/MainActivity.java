@@ -1,21 +1,14 @@
 package com.erkprog.weather.ui.main;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erkprog.weather.R;
@@ -55,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     } else {
       requestGpsPermission();
     }
-
   }
 
 
