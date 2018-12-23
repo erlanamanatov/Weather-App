@@ -1,9 +1,14 @@
 package com.erkprog.weather.ui.main;
 
 import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,13 +75,45 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     getLocationIcon.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-          mPresenter.getCurrentLocation();
+        if (isGpsPersmissionGranted()) {
+          if (isGpsEnabled()) {
+            mPresenter.getCurrentLocation();
+          } else {
+            showTurnGpsOnDialog();
+          }
         } else {
           requestGpsPermission();
         }
       }
     });
+  }
+
+  private void showTurnGpsOnDialog() {
+    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+        .setMessage("Turn on gps in settings")
+        .setTitle("Gps is disabled")
+        .setPositiveButton("Go to settings", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+          }
+        })
+        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(MainActivity.this, "Turn GPS on to get forecast for current location", Toast.LENGTH_SHORT).show();
+          }
+        });
+    builder.show();
+  }
+
+  private boolean isGpsEnabled() {
+    LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+    return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+  }
+  
+  private boolean isGpsPersmissionGranted() {
+    return ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
   }
 
   private void initSpinner() {
@@ -164,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     mainProgressBar.setVisibility(View.GONE);
     dailyRecyclerView.setVisibility(View.VISIBLE);
   }
-
+  
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
