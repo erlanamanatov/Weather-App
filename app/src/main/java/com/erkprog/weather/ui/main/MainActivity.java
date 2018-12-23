@@ -28,7 +28,6 @@ import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +51,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    if(getIntent() != null) {
+      if (getIntent().getExtras() != null) {
+        for (String key : getIntent().getExtras().keySet()) {
+          Object value = getIntent().getExtras().get(key);
+          Log.d(TAG, "Key: " + key + " Value: " + value);
+        }
+      }
+    }
 
     mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
         new LocationHelper(this));
