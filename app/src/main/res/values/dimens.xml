@@ -10,4 +10,6 @@
 
   <dimen name="gps_loading_progress_size">24dp</dimen>
   <dimen name="gps_textinfo_size">12sp</dimen>
+
+  <dimen name="main_progress_bar_size">90dp</dimen>
 </resources>

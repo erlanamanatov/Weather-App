@@ -3,6 +3,7 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.ForecastDetailed;
@@ -29,7 +30,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
   @Override
   public void loadData(String cityKeyId) {
-
+    mView.showProgress();
     if (mApiService == null) {
       return;
     }
@@ -44,6 +45,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
+          mView.dismissProgress();
           if (response.body() != null && response.body().getHeadline() != null) {
             Headline headline = response.body().getHeadline();
             mView.showData(response.body().getDailyForecasts());
@@ -54,6 +56,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onFailure(Call<ForecastDetailed> call, Throwable t) {
         if (isViewAttached()) {
+          mView.dismissProgress();
           mView.showMessage(" Failure " + t.getMessage());
         }
       }
@@ -128,3 +131,5 @@ public class MainPresenter implements MainActivityContract.Presenter {
     return mView != null;
   }
 }
+
+//TODO: send to settings if gps is turned off

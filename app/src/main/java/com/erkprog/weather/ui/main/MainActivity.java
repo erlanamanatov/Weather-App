@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   Spinner citySpinner;
   CityAdapter cityAdapter;
   List<City> cityList;
-  ProgressBar gpsProgressBar;
+  ProgressBar gpsProgressBar, mainProgressBar;
   ImageView getLocationIcon;
   TextView gpsInfoText;
 
@@ -62,9 +62,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     initRecyclerView();
     initSpinner();
     gpsProgressBar = findViewById(R.id.main_gps_progress);
+    mainProgressBar = findViewById(R.id.main_progress_bar);
     gpsInfoText = findViewById(R.id.main_gps_textinfo);
     getLocationIcon = findViewById(R.id.get_location_img);
     setIconsDefaultState();
+    dismissProgress();
     getLocationIcon.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -149,6 +151,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     } else {
       citySpinner.setSelection(cityList.indexOf(city));
     }
+  }
+
+  @Override
+  public void showProgress() {
+    dailyRecyclerView.setVisibility(View.INVISIBLE);
+    mainProgressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override
+  public void dismissProgress() {
+    mainProgressBar.setVisibility(View.GONE);
+    dailyRecyclerView.setVisibility(View.VISIBLE);
   }
 
   @Override

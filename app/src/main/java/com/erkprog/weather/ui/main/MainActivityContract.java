@@ -19,6 +19,10 @@ public interface MainActivityContract {
 
     void addNewCity(City city);
 
+    void showProgress();
+
+    void dismissProgress();
+
   }
 
   interface Presenter {
