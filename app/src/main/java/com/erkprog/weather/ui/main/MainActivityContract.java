@@ -11,6 +11,8 @@ public interface MainActivityContract {
 
     void showData(List<DailyForecast> data);
 
+    void displayError();
+
     void showMessage(String message);
 
     void onGettingLocation();

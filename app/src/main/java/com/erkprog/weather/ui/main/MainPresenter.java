@@ -46,9 +46,14 @@ public class MainPresenter implements MainActivityContract.Presenter {
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
           mView.dismissProgress();
-          if (response.body() != null && response.body().getHeadline() != null) {
-            Headline headline = response.body().getHeadline();
-            mView.showData(response.body().getDailyForecasts());
+          if (response.isSuccessful()) {
+            ForecastDetailed forecastResponse = response.body();
+            if (forecastResponse != null && forecastResponse.getDailyForecasts() != null) {
+              mView.showData(forecastResponse.getDailyForecasts());
+            }
+          } else {
+            mView.showMessage("failed to get forecast data");
+            mView.displayError();
           }
         }
       }
@@ -58,6 +63,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
         if (isViewAttached()) {
           mView.dismissProgress();
           mView.showMessage(" Failure " + t.getMessage());
+          mView.displayError();
         }
       }
     });

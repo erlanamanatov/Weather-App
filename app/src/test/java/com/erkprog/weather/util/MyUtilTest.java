@@ -13,13 +13,13 @@ import static org.junit.Assert.*;
 public class MyUtilTest {
 
   @Test
-  public void getFormattedDate() {
+  public void getFormattedDateWithDataFromResponseToDisplayData() {
     assertEquals("Friday, Dec 21", MyUtil.getFormattedDate("2018-12-21T07:00:00+06:00"));
     assertEquals("Saturday, Dec 22", MyUtil.getFormattedDate("2018-12-22T17:23:00+06:00"));
   }
 
   @Test
-  public void getSunriseSunset() {
+  public void getSunriseSunsetFormattedStringFromSunObject() {
     Sun sun = new Sun();
     sun.setRise("2018-12-22T08:29:00+06:00");
     sun.setSet("2018-12-22T17:31:00+06:00");

@@ -201,7 +201,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     mainProgressBar.setVisibility(View.GONE);
     dailyRecyclerView.setVisibility(View.VISIBLE);
   }
-  
+
+  @Override
+  public void displayError() {
+
+  }
+
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
