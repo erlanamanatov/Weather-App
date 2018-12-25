@@ -21,12 +21,12 @@ public interface ApiInterface {
   Call<GeopositionResponse> getCityByGeoposition(@Query("apikey") String apikey,
                                                  @Query("q") String latLong);
 
-  @GET("/simple5day")
+  @GET("simple5day")
   Call<ForecastResponse> getMock5dayForecast();
 
-  @GET("/detailed5day")
+  @GET("detailed5day")
   Call<ForecastDetailed> getMock5dayDetailedForecast();
 
-  @GET("/geoposition")
+  @GET("geoposition")
   Call<GeopositionResponse> getMockGeoPosition();
 }

@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
     return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
   }
-  
+
   private boolean isGpsPersmissionGranted() {
     return ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
   }

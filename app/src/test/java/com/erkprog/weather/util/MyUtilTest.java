@@ -39,6 +39,7 @@ public class MyUtilTest {
         GeoPosition geoPosition = new GeoPosition();
         geoPosition.setLatitude(12345.123);
         geoPosition.setLongitude(12345.567);
+
         setCountry(country);
         setGeoPosition(geoPosition);
         setKey("223344");

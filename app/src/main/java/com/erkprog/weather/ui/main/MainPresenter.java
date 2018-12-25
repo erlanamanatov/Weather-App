@@ -8,7 +8,6 @@ import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.GeopositionResponse;
-import com.erkprog.weather.data.entity.Headline;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
 
