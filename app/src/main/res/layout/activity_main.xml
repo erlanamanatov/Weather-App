@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
+  <TextView
+      android:id="@+id/main_error_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginTop="100dp"
+      android:text="Loading data error"
+      android:textAllCaps="false"
+      android:textColor="@android:color/black"
+      android:textSize="24sp"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
   <ProgressBar
       android:id="@+id/main_progress_bar"
       style="?android:attr/progressBarStyle"
@@ -55,6 +70,19 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@+id/main_city_spinner"
       app:srcCompat="@drawable/get_location"/>
+
+  <ImageView
+      android:id="@+id/main_error_img"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="20dp"
+      android:foreground="?android:attr/selectableItemBackground"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/main_error_text"
+      app:srcCompat="@drawable/error"/>
 
   <ProgressBar
       android:id="@+id/main_gps_progress"

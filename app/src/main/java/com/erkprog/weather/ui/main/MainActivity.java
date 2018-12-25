@@ -44,31 +44,28 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   CityAdapter cityAdapter;
   List<City> cityList;
   ProgressBar gpsProgressBar, mainProgressBar;
-  ImageView getLocationIcon;
-  TextView gpsInfoText;
+  ImageView getLocationIcon, errorImg;
+  TextView gpsInfoText, errorTextView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    checkIntent();
+    mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
+        new LocationHelper(this));
+    mPresenter.bind(this);
+    init();
+  }
 
-    if(getIntent() != null) {
+  private void checkIntent() {
+    if (getIntent() != null) {
       if (getIntent().getExtras() != null) {
         for (String key : getIntent().getExtras().keySet()) {
           Object value = getIntent().getExtras().get(key);
           Log.d(TAG, "Key: " + key + " Value: " + value);
         }
       }
-    }
-
-    mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
-        new LocationHelper(this));
-    mPresenter.bind(this);
-
-    init();
-
-    if (savedInstanceState == null) {
-      mPresenter.loadData(String.valueOf(((City) citySpinner.getSelectedItem()).getKey()));
     }
   }
 
@@ -79,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     mainProgressBar = findViewById(R.id.main_progress_bar);
     gpsInfoText = findViewById(R.id.main_gps_textinfo);
     getLocationIcon = findViewById(R.id.get_location_img);
+    errorImg = findViewById(R.id.main_error_img);
+    errorTextView = findViewById(R.id.main_error_text);
+
+    errorImg.setVisibility(View.GONE);
+    errorTextView.setVisibility(View.GONE);
+
     setIconsDefaultState();
     dismissProgress();
     getLocationIcon.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     cityList = new ArrayList<>(Defaults.CITY_LIST);
     cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
     citySpinner.setAdapter(cityAdapter);
+
+
     citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -140,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
       public void onNothingSelected(AdapterView<?> parent) {
       }
     });
+
   }
 
   private void initRecyclerView() {
@@ -151,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void showData(List<DailyForecast> data) {
+    hideError();
     mAdapter = new DailyForecastAdapter(data, this);
     dailyRecyclerView.setAdapter(mAdapter);
     mAdapter.notifyDataSetChanged();
@@ -207,13 +214,23 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void dismissProgress() {
+    Log.d(TAG, "dismissProgress: starts");
     mainProgressBar.setVisibility(View.GONE);
     dailyRecyclerView.setVisibility(View.VISIBLE);
   }
 
   @Override
   public void displayError() {
+    Log.d(TAG, "displayError: starts");
+    dailyRecyclerView.setVisibility(View.GONE);
+    errorImg.setVisibility(View.VISIBLE);
+    errorTextView.setVisibility(View.VISIBLE);
+  }
 
+  private void hideError() {
+    dailyRecyclerView.setVisibility(View.VISIBLE);
+    errorImg.setVisibility(View.GONE);
+    errorTextView.setVisibility(View.GONE);
   }
 
   @Override
