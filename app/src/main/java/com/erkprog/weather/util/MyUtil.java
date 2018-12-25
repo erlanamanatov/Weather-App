@@ -53,6 +53,24 @@ public class MyUtil {
     return formatter.format(date);
   }
 
+  @Nullable
+  public static City formCity(GeopositionResponse response) {
+    String cityName = response.getEnglishName();
+    if (cityName == null) {
+      return null;
+    }
+
+    String key = response.getKey();
+    String countryName = "";
+    if (response.getCountry() != null) {
+      countryName = response.getCountry().getEnglishName();
+    }
+    if (response.getGeoPosition() != null) {
+      return new City(key, cityName, countryName, response.getGeoPosition().getLatitude(), response.getGeoPosition().getLongitude());
+    }
+    return null;
+  }
+
   public static int getIcon(Integer iconId) {
     switch (iconId) {
       case 1:
@@ -138,23 +156,5 @@ public class MyUtil {
       default:
         return R.drawable.image_placeholder;
     }
-  }
-
-  @Nullable
-  public static City formCity(GeopositionResponse response) {
-    String cityName = response.getEnglishName();
-    if (cityName == null) {
-      return null;
-    }
-
-    String key = response.getKey();
-    String countryName = "";
-    if (response.getCountry() != null) {
-      countryName = response.getCountry().getEnglishName();
-    }
-    if (response.getGeoPosition() != null) {
-      return new City(key, cityName, countryName, response.getGeoPosition().getLatitude(), response.getGeoPosition().getLongitude());
-    }
-    return null;
   }
 }

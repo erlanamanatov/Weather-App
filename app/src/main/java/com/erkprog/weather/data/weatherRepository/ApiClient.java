@@ -35,7 +35,7 @@ public class ApiClient {
 
       final Retrofit retrofit = new Retrofit.Builder()
           .addConverterFactory(GsonConverterFactory.create())
-          .baseUrl("http://mock.api")
+          .baseUrl("http://mock.api/")
           .client(mockClient)
           .build();
 

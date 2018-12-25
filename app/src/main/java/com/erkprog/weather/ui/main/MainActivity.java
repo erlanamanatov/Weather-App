@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
     return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
   }
-  
+
   private boolean isGpsPersmissionGranted() {
     return ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
   }
@@ -210,7 +210,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     mainProgressBar.setVisibility(View.GONE);
     dailyRecyclerView.setVisibility(View.VISIBLE);
   }
-  
+
+  @Override
+  public void displayError() {
+
+  }
+
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);

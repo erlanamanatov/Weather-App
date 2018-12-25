@@ -7,6 +7,10 @@ public class City {
   private double latitude;
   private double longitude;
 
+  public City() {
+
+  }
+
   public City(String key, String name, String countryName, double latitude, double longitude) {
     this.name = name;
     this.key = key;
