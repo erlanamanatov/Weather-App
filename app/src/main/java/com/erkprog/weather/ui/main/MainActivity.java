@@ -36,13 +36,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   private static final String TAG = "MainActivity";
   private static final int GPS_PERMISSION_CODE = 1;
+  private static final String CITIES_LIST = "cities list";
 
   MainActivityContract.Presenter mPresenter;
   RecyclerView dailyRecyclerView;
   DailyForecastAdapter mAdapter;
   Spinner citySpinner;
   CityAdapter cityAdapter;
-  List<City> cityList;
+  ArrayList<City> cityList;
   ProgressBar gpsProgressBar, mainProgressBar;
   ImageView getLocationIcon, errorImg;
   TextView gpsInfoText, errorTextView;
@@ -52,10 +53,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     checkIntent();
-    mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
-        new LocationHelper(this));
-    mPresenter.bind(this);
+    attachPresenter();
     init();
+
+    if (savedInstanceState == null || !savedInstanceState.containsKey(CITIES_LIST)) {
+      cityList = new ArrayList<>(Defaults.CITY_LIST);
+    } else {
+      cityList = savedInstanceState.getParcelableArrayList(CITIES_LIST);
+    }
+    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+    citySpinner.setAdapter(cityAdapter);
+  }
+
+  private void attachPresenter() {
+    mPresenter = (MainActivityContract.Presenter) getLastCustomNonConfigurationInstance();
+    if (mPresenter == null) {
+      mPresenter = new MainPresenter(WeatherApplication.getInstance().getApiService(),
+          new LocationHelper(this));
+    }
+    mPresenter.bind(this);
   }
 
   private void checkIntent() {
@@ -100,6 +116,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     });
   }
 
+  private void initSpinner() {
+    citySpinner = findViewById(R.id.main_city_spinner);
+    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mPresenter.onCitySelected(cityAdapter.getItem(position));
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+      }
+    });
+  }
+
+  private void initRecyclerView() {
+    dailyRecyclerView = findViewById(R.id.daily_forecast_recycler_view);
+    LinearLayoutManager layoutManager
+        = new LinearLayoutManager(this);
+    dailyRecyclerView.setLayoutManager(layoutManager);
+  }
+
   private void showTurnGpsOnDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this)
         .setMessage("Turn on gps in settings")
@@ -126,33 +163,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   private boolean isGpsPersmissionGranted() {
     return ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-  }
-
-  private void initSpinner() {
-    citySpinner = findViewById(R.id.main_city_spinner);
-    cityList = new ArrayList<>(Defaults.CITY_LIST);
-    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
-    citySpinner.setAdapter(cityAdapter);
-
-
-    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-      @Override
-      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mPresenter.onCitySelected(cityAdapter.getItem(position));
-      }
-
-      @Override
-      public void onNothingSelected(AdapterView<?> parent) {
-      }
-    });
-
-  }
-
-  private void initRecyclerView() {
-    dailyRecyclerView = findViewById(R.id.daily_forecast_recycler_view);
-    LinearLayoutManager layoutManager
-        = new LinearLayoutManager(this);
-    dailyRecyclerView.setLayoutManager(layoutManager);
   }
 
   @Override
@@ -234,6 +244,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
+  public Object onRetainCustomNonConfigurationInstance() {
+    return mPresenter;
+  }
+
+  @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -244,5 +259,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Toast.makeText(this, "Location Permission denied", Toast.LENGTH_SHORT).show();
       }
     }
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putParcelableArrayList(CITIES_LIST, cityList);
   }
 }
