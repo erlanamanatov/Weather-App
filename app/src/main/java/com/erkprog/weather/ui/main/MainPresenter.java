@@ -3,13 +3,15 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
-import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
+import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +23,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
   private ApiInterface mApiService;
   private MainActivityContract.View mView;
   private LocationHelper mLocationHelper;
+  private List<DailyForecast> dailyForecastList;
 
   MainPresenter(ApiInterface service, LocationHelper locationHelper) {
     mApiService = service;
@@ -48,7 +51,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
           if (response.isSuccessful()) {
             ForecastDetailed forecastResponse = response.body();
             if (forecastResponse != null && forecastResponse.getDailyForecasts() != null) {
-              mView.showData(forecastResponse.getDailyForecasts());
+              dailyForecastList = forecastResponse.getDailyForecasts();
+              mView.showData(dailyForecastList);
             }
           } else {
             mView.showMessage("failed to get forecast data");
@@ -93,7 +97,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
         if (isViewAttached()) {
-          mView.setIconsDefaultState();
+          mView.onLocationFound();
           if (response.body() != null) {
             City newCity = MyUtil.formCity(response.body());
             if (newCity != null) {
@@ -109,7 +113,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       @Override
       public void onFailure(Call<GeopositionResponse> call, Throwable t) {
         if (isViewAttached()) {
-          mView.setIconsDefaultState();
+          mView.onLocationFound();
           mView.showMessage("Geoposition failure" + t.getMessage());
         }
       }
@@ -118,6 +122,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
   @Override
   public void onCitySelected(City city) {
+    Log.d(TAG, "onCitySelected: triggered");
     loadData(city.getKey());
   }
 
@@ -134,5 +139,10 @@ public class MainPresenter implements MainActivityContract.Presenter {
   @Override
   public boolean isViewAttached() {
     return mView != null;
+  }
+
+  @Override
+  public void onScreenRotated() {
+    mView.showData(dailyForecastList);
   }
 }

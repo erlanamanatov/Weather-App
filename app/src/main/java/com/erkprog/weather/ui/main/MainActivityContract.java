@@ -17,7 +17,7 @@ public interface MainActivityContract {
 
     void onGettingLocation();
 
-    void setIconsDefaultState();
+    void onLocationFound();
 
     void addNewCity(City city);
 
@@ -39,5 +39,7 @@ public interface MainActivityContract {
     void getCurrentLocation();
 
     void onCitySelected(City city);
+
+    void onScreenRotated();
   }
 }

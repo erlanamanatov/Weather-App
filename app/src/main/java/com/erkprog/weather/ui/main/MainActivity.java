@@ -57,45 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     setContentView(R.layout.activity_main);
     checkIntent();
     attachPresenter();
-    init();
-
-    citySpinner = findViewById(R.id.main_city_spinner);
-
-
-    spinnerListener = new SpinnerInteractionListener();
-
-    if (savedInstanceState == null || !savedInstanceState.containsKey(CITIES_LIST)) {
-      cityList = new ArrayList<>(Defaults.CITY_LIST);
-      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
-      citySpinner.setAdapter(cityAdapter);
-      citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-          Log.d(TAG, "onItemSelected: triggered " + position);
-          mPresenter.onCitySelected(cityAdapter.getItem(position));
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-      });
-    } else {
-
-      cityList = savedInstanceState.getParcelableArrayList(CITIES_LIST);
-      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
-      citySpinner.setAdapter(cityAdapter);
-      citySpinner.setSelection(savedInstanceState.getInt(SPINNER_POSITION));
-      citySpinner.setOnTouchListener(spinnerListener);
-      citySpinner.setOnItemSelectedListener(spinnerListener);
-      mPresenter.onScreenRotated();
-//      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item);
-//      citySpinner.setAdapter(cityAdapter);
-//      cityAdapter.addItems(cityList);
-    }
-//    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
-    Log.d(TAG, "onCreate: set adapter");
-
-
+    init(savedInstanceState);
   }
 
   private void attachPresenter() {
@@ -118,9 +80,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
   }
 
-  private void init() {
+  private void init(Bundle savedInstance) {
     initRecyclerView();
-    initSpinner();
     gpsProgressBar = findViewById(R.id.main_gps_progress);
     mainProgressBar = findViewById(R.id.main_progress_bar);
     gpsInfoText = findViewById(R.id.main_gps_textinfo);
@@ -131,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     errorImg.setVisibility(View.GONE);
     errorTextView.setVisibility(View.GONE);
 
-    setIconsDefaultState();
+    onLocationFound();
     dismissProgress();
     getLocationIcon.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -147,10 +108,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         }
       }
     });
+    initSpinner(savedInstance);
   }
 
-  private void initSpinner() {
-
+  private void initSpinner(Bundle savedInstanceState) {
+    citySpinner = findViewById(R.id.main_city_spinner);
+    spinnerListener = new SpinnerInteractionListener();
+    citySpinner.setOnTouchListener(spinnerListener);
+    citySpinner.setOnItemSelectedListener(spinnerListener);
+    if (savedInstanceState == null || !savedInstanceState.containsKey(CITIES_LIST)) {
+      cityList = new ArrayList<>(Defaults.CITY_LIST);
+      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+      citySpinner.setAdapter(cityAdapter);
+      spinnerListener.userSelect = true;
+      citySpinner.setSelection(0);
+    } else {
+      cityList = savedInstanceState.getParcelableArrayList(CITIES_LIST);
+      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+      citySpinner.setAdapter(cityAdapter);
+      citySpinner.setSelection(savedInstanceState.getInt(SPINNER_POSITION));
+      mPresenter.onScreenRotated();
+    }
   }
 
   private void initRecyclerView() {
@@ -221,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
-  public void setIconsDefaultState() {
+  public void onLocationFound() {
     getLocationIcon.setVisibility(View.VISIBLE);
     getLocationIcon.setEnabled(true);
     gpsProgressBar.setVisibility(View.GONE);
@@ -313,10 +291,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
       if (userSelect) {
-        // Your selection handling code here
         userSelect = false;
       }
     }
-
   }
 }
