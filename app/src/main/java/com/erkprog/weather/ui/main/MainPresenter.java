@@ -3,6 +3,7 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
@@ -37,13 +38,13 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-//    mApiService.get5dayForecast(
-//        cityKeyId,
-//        Defaults.WEATHER_API_KEY,
-//        Defaults.WEATHER_DETAILED_FORECAST,
-//        Defaults.WEATHER_METRIC_UNIT)
-//        .enqueue(new Callback<ForecastDetailed>() {
-    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
+    mApiService.get5dayForecast(
+        cityKeyId,
+        Defaults.WEATHER_API_KEY,
+        Defaults.WEATHER_DETAILED_FORECAST,
+        Defaults.WEATHER_METRIC_UNIT)
+        .enqueue(new Callback<ForecastDetailed>() {
+//    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
@@ -92,8 +93,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
-//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
-    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
+    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
+//    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
       @Override
       public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
         if (isViewAttached()) {
