@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   private static final String TAG = "MainActivity";
   private static final int GPS_PERMISSION_CODE = 1;
   private static final String CITIES_LIST = "cities list";
+  private static final String SPINNER_POSITION = "position";
 
   MainActivityContract.Presenter mPresenter;
   RecyclerView dailyRecyclerView;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   ProgressBar gpsProgressBar, mainProgressBar;
   ImageView getLocationIcon, errorImg;
   TextView gpsInfoText, errorTextView;
+  private SpinnerInteractionListener spinnerListener;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +59,43 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     attachPresenter();
     init();
 
+    citySpinner = findViewById(R.id.main_city_spinner);
+
+
+    spinnerListener = new SpinnerInteractionListener();
+
     if (savedInstanceState == null || !savedInstanceState.containsKey(CITIES_LIST)) {
       cityList = new ArrayList<>(Defaults.CITY_LIST);
+      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+      citySpinner.setAdapter(cityAdapter);
+      citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+          Log.d(TAG, "onItemSelected: triggered " + position);
+          mPresenter.onCitySelected(cityAdapter.getItem(position));
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+      });
     } else {
+
       cityList = savedInstanceState.getParcelableArrayList(CITIES_LIST);
+      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+      citySpinner.setAdapter(cityAdapter);
+      citySpinner.setSelection(savedInstanceState.getInt(SPINNER_POSITION));
+      citySpinner.setOnTouchListener(spinnerListener);
+      citySpinner.setOnItemSelectedListener(spinnerListener);
+      mPresenter.onScreenRotated();
+//      cityAdapter = new CityAdapter(this, R.layout.spinner_city_item);
+//      citySpinner.setAdapter(cityAdapter);
+//      cityAdapter.addItems(cityList);
     }
-    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
-    citySpinner.setAdapter(cityAdapter);
+//    cityAdapter = new CityAdapter(this, R.layout.spinner_city_item, cityList);
+    Log.d(TAG, "onCreate: set adapter");
+
+
   }
 
   private void attachPresenter() {
@@ -117,17 +150,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   private void initSpinner() {
-    citySpinner = findViewById(R.id.main_city_spinner);
-    citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-      @Override
-      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mPresenter.onCitySelected(cityAdapter.getItem(position));
-      }
 
-      @Override
-      public void onNothingSelected(AdapterView<?> parent) {
-      }
-    });
   }
 
   private void initRecyclerView() {
@@ -207,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void addNewCity(City city) {
+    spinnerListener.userSelect = true;
     if (!cityList.contains(city)) {
       cityList.add(city);
       cityAdapter.notifyDataSetChanged();
@@ -265,5 +289,34 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   protected void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putParcelableArrayList(CITIES_LIST, cityList);
+    outState.putInt(SPINNER_POSITION, citySpinner.getSelectedItemPosition());
+  }
+
+  public class SpinnerInteractionListener implements AdapterView.OnItemSelectedListener, View.OnTouchListener {
+    boolean userSelect = false;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      userSelect = true;
+      return false;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+      if (userSelect) {
+        Log.d(TAG, "onItemSelected: triggered " + pos);
+        mPresenter.onCitySelected(cityAdapter.getItem(pos));
+        userSelect = false;
+      }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+      if (userSelect) {
+        // Your selection handling code here
+        userSelect = false;
+      }
+    }
+
   }
 }
