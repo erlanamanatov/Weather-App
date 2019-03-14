@@ -7,17 +7,14 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +30,7 @@ import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
+import com.erkprog.weather.ui.searchCity.SearchCityActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   private static final int GPS_PERMISSION_CODE = 1;
   private static final String CITIES_LIST = "cities list";
   private static final String SPINNER_POSITION = "position";
+  private static final int REQUEST_CODE_CITY = 11;
 
   MainActivityContract.Presenter mPresenter;
   RecyclerView dailyRecyclerView;
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   ImageView getLocationIcon, errorImg;
   TextView gpsInfoText, errorTextView;
   private SpinnerInteractionListener spinnerListener;
+  ImageView imgSearchCity;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     checkIntent();
     attachPresenter();
     init(savedInstanceState);
-
-
   }
 
 
@@ -95,6 +93,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     getLocationIcon = findViewById(R.id.get_location_img);
     errorImg = findViewById(R.id.main_error_img);
     errorTextView = findViewById(R.id.main_error_text);
+    imgSearchCity = findViewById(R.id.img_search_city);
+    imgSearchCity.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, SearchCityActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_CITY);
+      }
+    });
 
     errorImg.setVisibility(View.GONE);
     errorTextView.setVisibility(View.GONE);
@@ -311,23 +317,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.search_menu, menu);
-    MenuItem item = menu.findItem(R.id.action_search);
-    SearchView searchView = (SearchView) item.getActionView();
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String s) {
-        mPresenter.searchCityByText(s);
-        return true;
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    if (requestCode == REQUEST_CODE_CITY && resultCode == RESULT_OK) {
+      String cityKey = data.getStringExtra(SearchCityActivity.EXTRA_CITY_KEY);
+      if (cityKey != null)  {
+        showMessage(cityKey);
       }
-
-      @Override
-      public boolean onQueryTextChange(String s) {
-        return false;
-      }
-    });
-    return true;
+    }
   }
 }
