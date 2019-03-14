@@ -5,4 +5,5 @@
   <string name="wind">wind</string>
   <string name="precipitation">precipitation</string>
   <string name="getting_gps_data">getting gps data...</string>
+  <string name="search">Search</string>
 </resources>

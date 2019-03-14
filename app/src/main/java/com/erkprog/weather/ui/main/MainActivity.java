@@ -13,7 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,7 +62,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     checkIntent();
     attachPresenter();
     init(savedInstanceState);
+
+
   }
+
 
   private void attachPresenter() {
     mPresenter = (MainActivityContract.Presenter) getLastCustomNonConfigurationInstance();
@@ -294,5 +301,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         userSelect = false;
       }
     }
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.search_menu, menu);
+    MenuItem item = menu.findItem(R.id.action_search);
+    SearchView searchView = (SearchView) item.getActionView();
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String s) {
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String s) {
+        return false;
+      }
+    });
+    return true;
   }
 }
