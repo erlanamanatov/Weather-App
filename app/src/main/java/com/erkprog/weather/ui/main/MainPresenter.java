@@ -3,7 +3,6 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
-import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.DailyForecast;
@@ -11,6 +10,7 @@ import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -38,13 +38,13 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-    mApiService.get5dayForecast(
-        cityKeyId,
-        Defaults.WEATHER_API_KEY,
-        Defaults.WEATHER_DETAILED_FORECAST,
-        Defaults.WEATHER_METRIC_UNIT)
-        .enqueue(new Callback<ForecastDetailed>() {
-//    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
+//    mApiService.get5dayForecast(
+//        cityKeyId,
+//        Defaults.WEATHER_API_KEY,
+//        Defaults.WEATHER_DETAILED_FORECAST,
+//        Defaults.WEATHER_METRIC_UNIT)
+//        .enqueue(new Callback<ForecastDetailed>() {
+    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
@@ -93,8 +93,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
-    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
-//    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
+//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
+    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
       @Override
       public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
         if (isViewAttached()) {
@@ -117,6 +117,26 @@ public class MainPresenter implements MainActivityContract.Presenter {
           mView.onLocationFound();
           mView.showMessage("Geoposition failure" + t.getMessage());
         }
+      }
+    });
+  }
+
+  @Override
+  public void searchCityByText(String text) {
+    if (mApiService == null) {
+      return;
+    }
+
+//    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<GeopositionResponse>>() {
+    mApiService.getMockCitiesByName().enqueue(new Callback<List<GeopositionResponse>>() {
+      @Override
+      public void onResponse(Call<List<GeopositionResponse>> call, Response<List<GeopositionResponse>> response) {
+        Log.d(TAG, "onResponse: " + new GsonBuilder().setPrettyPrinting().create().toJson(response));
+      }
+
+      @Override
+      public void onFailure(Call<List<GeopositionResponse>> call, Throwable t) {
+        Log.e(TAG, "search City by text failure: " + t);
       }
     });
   }

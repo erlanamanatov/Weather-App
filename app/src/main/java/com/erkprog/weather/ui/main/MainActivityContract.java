@@ -30,6 +30,8 @@ public interface MainActivityContract {
   interface Presenter {
     void loadData(String cityKeyId);
 
+    void searchCityByText(String text);
+
     void bind(View v);
 
     void unbind();

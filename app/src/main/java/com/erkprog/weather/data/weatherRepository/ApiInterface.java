@@ -1,6 +1,5 @@
 package com.erkprog.weather.data.weatherRepository;
 
-import com.erkprog.weather.data.entity.CitiesByNameResponse;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.ForecastResponse;
 import com.erkprog.weather.data.entity.GeopositionResponse;

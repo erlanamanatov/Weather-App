@@ -312,7 +312,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String s) {
-        return false;
+        mPresenter.searchCityByText(s);
+        return true;
       }
 
       @Override
