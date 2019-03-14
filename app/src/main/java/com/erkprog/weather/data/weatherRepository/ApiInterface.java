@@ -1,8 +1,11 @@
 package com.erkprog.weather.data.weatherRepository;
 
+import com.erkprog.weather.data.entity.CitiesByNameResponse;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.ForecastResponse;
 import com.erkprog.weather.data.entity.GeopositionResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -21,6 +24,10 @@ public interface ApiInterface {
   Call<GeopositionResponse> getCityByGeoposition(@Query("apikey") String apikey,
                                                  @Query("q") String latLong);
 
+  @GET("http://dataservice.accuweather.com/locations/v1/cities/search")
+  Call<List<GeopositionResponse>> getCityByName(@Query("apikey") String apikey,
+                                                 @Query("q") String latLong);
+
   @GET("simple5day")
   Call<ForecastResponse> getMock5dayForecast();
 
@@ -29,4 +36,7 @@ public interface ApiInterface {
 
   @GET("geoposition")
   Call<GeopositionResponse> getMockGeoPosition();
+
+  @GET("cc")
+  Call<List<GeopositionResponse>> getMockCitiesByName();
 }
