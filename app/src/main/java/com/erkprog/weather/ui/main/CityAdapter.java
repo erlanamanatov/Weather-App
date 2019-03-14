@@ -21,7 +21,7 @@ public class CityAdapter extends ArrayAdapter<City> {
   private Context mContext;
   private int mResource;
 
-  CityAdapter(@NonNull Context context, @LayoutRes int resource,
+  public CityAdapter(@NonNull Context context, @LayoutRes int resource,
               @NonNull List<City> cityList) {
     super(context, resource, 0, cityList);
     mContext = context;
