@@ -1,8 +1,8 @@
 package com.erkprog.weather.data.weatherRepository;
 
+import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.entity.ForecastResponse;
-import com.erkprog.weather.data.entity.GeopositionResponse;
 
 import java.util.List;
 
@@ -20,12 +20,12 @@ public interface ApiInterface {
                                          @Query("metric") Boolean metric);
 
   @GET("locations/v1/cities/geoposition/search")
-  Call<GeopositionResponse> getCityByGeoposition(@Query("apikey") String apikey,
-                                                 @Query("q") String latLong);
+  Call<CityResponse> getCityByGeoposition(@Query("apikey") String apikey,
+                                          @Query("q") String latLong);
 
   @GET("http://dataservice.accuweather.com/locations/v1/cities/search")
-  Call<List<GeopositionResponse>> getCityByName(@Query("apikey") String apikey,
-                                                 @Query("q") String latLong);
+  Call<List<CityResponse>> getCityByName(@Query("apikey") String apikey,
+                                         @Query("q") String latLong);
 
   @GET("simple5day")
   Call<ForecastResponse> getMock5dayForecast();
@@ -34,8 +34,8 @@ public interface ApiInterface {
   Call<ForecastDetailed> getMock5dayDetailedForecast();
 
   @GET("geoposition")
-  Call<GeopositionResponse> getMockGeoPosition();
+  Call<CityResponse> getMockGeoPosition();
 
   @GET("cc")
-  Call<List<GeopositionResponse>> getMockCitiesByName();
+  Call<List<CityResponse>> getMockCitiesByName();
 }

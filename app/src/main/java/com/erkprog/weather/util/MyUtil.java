@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.erkprog.weather.R;
 import com.erkprog.weather.data.entity.City;
-import com.erkprog.weather.data.entity.GeopositionResponse;
+import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.entity.Sun;
 
 import java.text.ParseException;
@@ -54,7 +54,7 @@ public class MyUtil {
   }
 
   @Nullable
-  public static City formCity(GeopositionResponse response) {
+  public static City formCity(CityResponse response) {
     String cityName = response.getEnglishName();
     if (cityName == null) {
       return null;

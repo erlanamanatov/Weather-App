@@ -1,9 +1,9 @@
 package com.erkprog.weather.util;
 
 import com.erkprog.weather.data.entity.City;
+import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.entity.Country;
 import com.erkprog.weather.data.entity.GeoPosition;
-import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.entity.Sun;
 
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class MyUtilTest {
 
   @Test
   public void formCity() {
-    GeopositionResponse geopositionResponse = new GeopositionResponse() {
+    CityResponse geopositionResponse = new CityResponse() {
       {
         Country country = new Country();
         country.setEnglishName("Kyrgyzstan");

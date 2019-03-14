@@ -5,9 +5,9 @@ import android.util.Log;
 
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
+import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.data.entity.ForecastDetailed;
-import com.erkprog.weather.data.entity.GeopositionResponse;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
 import com.google.gson.GsonBuilder;
@@ -93,10 +93,10 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
-//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<GeopositionResponse>() {
-    mApiService.getMockGeoPosition().enqueue(new Callback<GeopositionResponse>() {
+//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<CityResponse>() {
+    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
       @Override
-      public void onResponse(Call<GeopositionResponse> call, Response<GeopositionResponse> response) {
+      public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
         if (isViewAttached()) {
           mView.onLocationFound();
           if (response.body() != null) {
@@ -112,7 +112,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       }
 
       @Override
-      public void onFailure(Call<GeopositionResponse> call, Throwable t) {
+      public void onFailure(Call<CityResponse> call, Throwable t) {
         if (isViewAttached()) {
           mView.onLocationFound();
           mView.showMessage("Geoposition failure" + t.getMessage());
@@ -127,15 +127,15 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-//    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<GeopositionResponse>>() {
-    mApiService.getMockCitiesByName().enqueue(new Callback<List<GeopositionResponse>>() {
+//    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
+    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
       @Override
-      public void onResponse(Call<List<GeopositionResponse>> call, Response<List<GeopositionResponse>> response) {
+      public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
         Log.d(TAG, "onResponse: " + new GsonBuilder().setPrettyPrinting().create().toJson(response));
       }
 
       @Override
-      public void onFailure(Call<List<GeopositionResponse>> call, Throwable t) {
+      public void onFailure(Call<List<CityResponse>> call, Throwable t) {
         Log.e(TAG, "search City by text failure: " + t);
       }
     });

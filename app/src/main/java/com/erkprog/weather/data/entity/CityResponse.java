@@ -2,7 +2,7 @@ package com.erkprog.weather.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GeopositionResponse {
+public class CityResponse {
 
   @SerializedName("Version")
   private Integer version;
