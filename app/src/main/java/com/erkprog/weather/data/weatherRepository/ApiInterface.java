@@ -36,6 +36,6 @@ public interface ApiInterface {
   @GET("geoposition")
   Call<CityResponse> getMockGeoPosition();
 
-  @GET("cc")
+  @GET("cityByName")
   Call<List<CityResponse>> getMockCitiesByName();
 }

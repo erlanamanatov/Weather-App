@@ -182,6 +182,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
+  public void showFoundCities(List<City> foundCities) {
+    for (City city : foundCities) {
+      Log.d(TAG, "showFoundCities: " + city.toString());
+    }
+  }
+
+  @Override
   public void showMessage(String message) {
     Log.d(TAG, "showMessage: " + message);
     Toast.makeText(this, message, Toast.LENGTH_LONG).show();

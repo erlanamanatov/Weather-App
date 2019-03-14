@@ -10,8 +10,8 @@ import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
-import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -131,7 +131,17 @@ public class MainPresenter implements MainActivityContract.Presenter {
     mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
       @Override
       public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
-        Log.d(TAG, "onResponse: " + new GsonBuilder().setPrettyPrinting().create().toJson(response));
+        if (response.isSuccessful() && response.body() != null) {
+          ArrayList<City> foundCities = new ArrayList<>();
+          for (CityResponse cityResponse: response.body()) {
+            City city  = MyUtil.formCity(cityResponse);
+            foundCities.add(city);
+            Log.d(TAG, "onResponse: " + city.toString());
+          }
+          if (isViewAttached()) {
+            mView.showFoundCities(foundCities);
+          }
+        }
       }
 
       @Override

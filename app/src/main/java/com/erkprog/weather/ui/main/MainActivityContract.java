@@ -25,6 +25,7 @@ public interface MainActivityContract {
 
     void dismissProgress();
 
+    void showFoundCities(List<City> foundCities);
   }
 
   interface Presenter {
