@@ -27,17 +27,17 @@ public class ApiClient {
           .addInterceptor(new FakeInterceptor(context))
           .build();
 
-//      final Retrofit retrofit = new Retrofit.Builder()
-//          .addConverterFactory(GsonConverterFactory.create())
-//          .baseUrl(BASE_URL)
-//          .client(client)
-//          .build();
-
       final Retrofit retrofit = new Retrofit.Builder()
           .addConverterFactory(GsonConverterFactory.create())
-          .baseUrl("http://mock.api/")
-          .client(mockClient)
+          .baseUrl(BASE_URL)
+          .client(client)
           .build();
+
+//      final Retrofit retrofit = new Retrofit.Builder()
+//          .addConverterFactory(GsonConverterFactory.create())
+//          .baseUrl("http://mock.api/")
+//          .client(mockClient)
+//          .build();
 
       mApiService = retrofit.create(ApiInterface.class);
     }

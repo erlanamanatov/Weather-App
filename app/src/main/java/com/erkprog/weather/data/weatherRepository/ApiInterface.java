@@ -25,7 +25,7 @@ public interface ApiInterface {
 
   @GET("http://dataservice.accuweather.com/locations/v1/cities/search")
   Call<List<CityResponse>> getCityByName(@Query("apikey") String apikey,
-                                         @Query("q") String latLong);
+                                         @Query("q") String cityName);
 
   @GET("simple5day")
   Call<ForecastResponse> getMock5dayForecast();

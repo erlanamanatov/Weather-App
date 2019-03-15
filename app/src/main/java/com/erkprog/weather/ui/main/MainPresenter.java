@@ -3,6 +3,7 @@ package com.erkprog.weather.ui.main;
 import android.location.Location;
 import android.util.Log;
 
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.CityResponse;
@@ -38,13 +39,13 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-//    mApiService.get5dayForecast(
-//        cityKeyId,
-//        Defaults.WEATHER_API_KEY,
-//        Defaults.WEATHER_DETAILED_FORECAST,
-//        Defaults.WEATHER_METRIC_UNIT)
-//        .enqueue(new Callback<ForecastDetailed>() {
-    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
+    mApiService.get5dayForecast(
+        cityKeyId,
+        Defaults.WEATHER_API_KEY,
+        Defaults.WEATHER_DETAILED_FORECAST,
+        Defaults.WEATHER_METRIC_UNIT)
+        .enqueue(new Callback<ForecastDetailed>() {
+//    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
       @Override
       public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
         if (isViewAttached()) {
@@ -93,8 +94,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
-//    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<CityResponse>() {
-    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
+    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<CityResponse>() {
+//    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
       @Override
       public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
         if (isViewAttached()) {
@@ -127,8 +128,8 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-//    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
-    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
+    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
+//    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
       @Override
       public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
         if (response.isSuccessful() && response.body() != null) {

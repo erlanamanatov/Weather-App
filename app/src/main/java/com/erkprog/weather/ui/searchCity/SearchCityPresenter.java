@@ -2,6 +2,7 @@ package com.erkprog.weather.ui.searchCity;
 
 import android.util.Log;
 
+import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.entity.City;
 import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
@@ -37,7 +38,8 @@ public class SearchCityPresenter implements SearchCityContract.Presenter {
   @Override
   public void searchCityByName(String text) {
     mView.onLoadingData();
-    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
+    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
+//    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
       @Override
       public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
         if (response.isSuccessful() && response.body() != null && isAttached()) {
