@@ -7,6 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.searchCity.SearchCityActivity">
 
+  <ProgressBar
+      android:id="@+id/search_city_progress_bar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:layout_marginBottom="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:elevation="5dp"
+      android:visibility="invisible"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
   <ListView
       android:id="@+id/found_cities_listview"
       android:layout_width="0dp"

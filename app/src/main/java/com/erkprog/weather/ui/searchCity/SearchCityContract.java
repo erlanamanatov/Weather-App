@@ -11,6 +11,10 @@ public interface SearchCityContract {
     void showMessage(String message);
 
     void showFoundCities(List<City> foundCities);
+
+    void onLoadingData();
+
+    void onDataLoaded();
   }
 
   interface Presenter {

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.erkprog.weather.R;
@@ -28,6 +29,7 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
   private SearchCityContract.Presenter mPresenter;
   ListView foundCitiesListView;
   CityAdapter mAdapter;
+  private ProgressBar mProgressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,18 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
     return true;
   }
 
+  @Override
+  public void onLoadingData() {
+    mProgressBar.setVisibility(View.VISIBLE);
+  }
+
+  @Override
+  public void onDataLoaded() {
+    mProgressBar.setVisibility(View.GONE);
+  }
+
   private void init() {
+    mProgressBar = findViewById(R.id.search_city_progress_bar);
     foundCitiesListView = findViewById(R.id.found_cities_listview);
     mAdapter = new CityAdapter(this, R.layout.spinner_city_item, new ArrayList<City>());
     foundCitiesListView.setAdapter(mAdapter);
