@@ -6,4 +6,5 @@
   <string name="precipitation">precipitation</string>
   <string name="getting_gps_data">getting gps data...</string>
   <string name="search">Search</string>
+  <string name="search_city">Search city</string>
 </resources>

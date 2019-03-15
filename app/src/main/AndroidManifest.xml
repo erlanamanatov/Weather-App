@@ -18,7 +18,8 @@
       android:theme="@style/AppTheme"
       android:usesCleartextTraffic="true"
       tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".ui.searchCity.SearchCityActivity">
+    <activity android:name=".ui.searchCity.SearchCityActivity"
+        android:label="@string/search_city">
     </activity>
     <activity
         android:name=".ui.main.MainActivity"

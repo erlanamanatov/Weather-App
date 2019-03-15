@@ -33,22 +33,7 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_search_city);
-    foundCitiesListView = findViewById(R.id.found_cities_listview);
-    mAdapter = new CityAdapter(this, R.layout.spinner_city_item, new ArrayList<City>());
-    foundCitiesListView.setAdapter(mAdapter);
-    foundCitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        City city = mAdapter.getItem(position);
-        if (city == null) {
-          return;
-        }
-        Intent intent = new Intent();
-        intent.putExtra(EXTRA_CITY, city);
-        setResult(RESULT_OK, intent);
-        finish();
-      }
-    });
+    init();
     mPresenter = new SearchCityPresenter(WeatherApplication.getInstance().getApiService());
     mPresenter.bind(this);
   }
@@ -69,8 +54,9 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.search_menu, menu);
-    MenuItem item = menu.findItem(R.id.action_search);
+    final MenuItem item = menu.findItem(R.id.action_search);
     final SearchView searchView = (SearchView) item.getActionView();
+    searchView.setQueryHint("Search places");
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String text) {
@@ -83,7 +69,27 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
         return false;
       }
     });
+    item.expandActionView();
     return true;
+  }
+
+  private void init() {
+    foundCitiesListView = findViewById(R.id.found_cities_listview);
+    mAdapter = new CityAdapter(this, R.layout.spinner_city_item, new ArrayList<City>());
+    foundCitiesListView.setAdapter(mAdapter);
+    foundCitiesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        City city = mAdapter.getItem(position);
+        if (city == null) {
+          return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_CITY, city);
+        setResult(RESULT_OK, intent);
+        finish();
+      }
+    });
   }
 
   @Override
