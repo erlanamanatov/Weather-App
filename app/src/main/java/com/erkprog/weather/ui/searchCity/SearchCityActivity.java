@@ -24,7 +24,7 @@ import java.util.List;
 public class SearchCityActivity extends AppCompatActivity implements SearchCityContract.View {
   private static final String TAG = "SearchCityActivity";
 
-  public static final String EXTRA_CITY_KEY = "city_key";
+  public static final String EXTRA_CITY = "city";
   private SearchCityContract.Presenter mPresenter;
   ListView foundCitiesListView;
   CityAdapter mAdapter;
@@ -44,7 +44,7 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
           return;
         }
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_CITY_KEY, city.getKey());
+        intent.putExtra(EXTRA_CITY, city);
         setResult(RESULT_OK, intent);
         finish();
       }

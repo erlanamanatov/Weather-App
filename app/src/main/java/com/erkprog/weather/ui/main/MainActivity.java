@@ -318,10 +318,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == REQUEST_CODE_CITY && resultCode == RESULT_OK) {
-      String cityKey = data.getStringExtra(SearchCityActivity.EXTRA_CITY_KEY);
-      if (cityKey != null)  {
-        showMessage(cityKey);
+    if (requestCode == REQUEST_CODE_CITY && resultCode == RESULT_OK && data != null) {
+      City city = data.getParcelableExtra(SearchCityActivity.EXTRA_CITY);
+      if (city != null) {
+        addNewCity(city);
       }
     }
   }
