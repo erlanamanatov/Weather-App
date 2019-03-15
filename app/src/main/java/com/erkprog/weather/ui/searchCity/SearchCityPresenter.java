@@ -39,8 +39,12 @@ public class SearchCityPresenter implements SearchCityContract.Presenter {
     mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
       @Override
       public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
-        if (response.isSuccessful() && response.body() != null) {
+        if (response.isSuccessful() && response.body() != null && isAttached()) {
           List<City> foundCities = new ArrayList<>();
+          if (response.body().size() == 0) {
+            mView.showMessage("City not found");
+            return;
+          }
           for (CityResponse cityResponse : response.body()) {
             foundCities.add(MyUtil.formCity(cityResponse));
           }
