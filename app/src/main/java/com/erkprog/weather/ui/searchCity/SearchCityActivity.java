@@ -85,6 +85,11 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
     mProgressBar.setVisibility(View.GONE);
   }
 
+  @Override
+  public void clearList() {
+    mAdapter.clear();
+  }
+
   private void init() {
     mProgressBar = findViewById(R.id.search_city_progress_bar);
     foundCitiesListView = findViewById(R.id.found_cities_listview);

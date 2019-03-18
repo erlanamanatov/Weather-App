@@ -4,22 +4,25 @@ import android.util.Log;
 
 import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.entity.City;
-import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 
 public class SearchCityPresenter implements SearchCityContract.Presenter {
   private static final String TAG = "SearchCityPresenter";
 
   private ApiInterface mApiService;
   private SearchCityContract.View mView;
+
+  private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
   public SearchCityPresenter(ApiInterface apiService) {
     mApiService = apiService;
@@ -37,41 +40,40 @@ public class SearchCityPresenter implements SearchCityContract.Presenter {
 
   @Override
   public void searchCityByName(String text) {
+    mCompositeDisposable.clear();
     mView.onLoadingData();
-    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
-//    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
+
+    Single<List<City>> resp = mApiService.getCityByName(Defaults.WEATHER_API_KEY, text)
+        .subscribeOn(Schedulers.io())
+        .flatMap(Observable::fromIterable)
+        .map(MyUtil::formCity)
+        .toList()
+        .observeOn(AndroidSchedulers.mainThread());
+
+    mCompositeDisposable.add(resp.subscribeWith(new DisposableSingleObserver<List<City>>() {
       @Override
-      public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
-        if (response.isSuccessful() && response.body() != null && isAttached()) {
-          mView.onDataLoaded();
-          List<City> foundCities = new ArrayList<>();
-          if (response.body().size() == 0) {
-            mView.showMessage("City not found");
-            return;
-          }
-          for (CityResponse cityResponse : response.body()) {
-            foundCities.add(MyUtil.formCity(cityResponse));
-          }
-          if (isAttached()) {
-            Log.d(TAG, "onResponse: size: " + foundCities.size());
-            mView.showFoundCities(foundCities);
-          }
-        } else {
-          if (isAttached()) {
-            mView.showMessage("Something went wrong fetching data");
-          }
+      public void onSuccess(List<City> cities) {
+        if (!isAttached()) {
+          return;
         }
+        mView.onDataLoaded();
+        if (cities.size() == 0) {
+          mView.clearList();
+          mView.showMessage("City not found");
+          return;
+        }
+        mView.showFoundCities(cities);
       }
 
       @Override
-      public void onFailure(Call<List<CityResponse>> call, Throwable t) {
-        Log.e(TAG, "searchCityByName, onFailure: " + t);
+      public void onError(Throwable e) {
+        Log.e(TAG, "onError: Search city by Name, onFailure " + e);
         if (isAttached()) {
           mView.onDataLoaded();
           mView.showMessage("Error fetching data");
         }
       }
-    });
+    }));
   }
 
   @Override

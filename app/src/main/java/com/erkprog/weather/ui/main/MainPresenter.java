@@ -45,33 +45,33 @@ public class MainPresenter implements MainActivityContract.Presenter {
         Defaults.WEATHER_DETAILED_FORECAST,
         Defaults.WEATHER_METRIC_UNIT)
         .enqueue(new Callback<ForecastDetailed>() {
-//    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
-      @Override
-      public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
-        if (isViewAttached()) {
-          mView.dismissProgress();
-          if (response.isSuccessful()) {
-            ForecastDetailed forecastResponse = response.body();
-            if (forecastResponse != null && forecastResponse.getDailyForecasts() != null) {
-              dailyForecastList = forecastResponse.getDailyForecasts();
-              mView.showData(dailyForecastList);
+          //    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
+          @Override
+          public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
+            if (isViewAttached()) {
+              mView.dismissProgress();
+              if (response.isSuccessful()) {
+                ForecastDetailed forecastResponse = response.body();
+                if (forecastResponse != null && forecastResponse.getDailyForecasts() != null) {
+                  dailyForecastList = forecastResponse.getDailyForecasts();
+                  mView.showData(dailyForecastList);
+                }
+              } else {
+                mView.showMessage("failed to get forecast data");
+                mView.displayError();
+              }
             }
-          } else {
-            mView.showMessage("failed to get forecast data");
-            mView.displayError();
           }
-        }
-      }
 
-      @Override
-      public void onFailure(Call<ForecastDetailed> call, Throwable t) {
-        if (isViewAttached()) {
-          mView.dismissProgress();
-          mView.showMessage(" Failure " + t.getMessage());
-          mView.displayError();
-        }
-      }
-    });
+          @Override
+          public void onFailure(Call<ForecastDetailed> call, Throwable t) {
+            if (isViewAttached()) {
+              mView.dismissProgress();
+              mView.showMessage(" Failure " + t.getMessage());
+              mView.displayError();
+            }
+          }
+        });
   }
 
   @Override
@@ -95,7 +95,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
     mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<CityResponse>() {
-//    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
+      //    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
       @Override
       public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
         if (isViewAttached()) {
@@ -118,36 +118,6 @@ public class MainPresenter implements MainActivityContract.Presenter {
           mView.onLocationFound();
           mView.showMessage("Geoposition failure" + t.getMessage());
         }
-      }
-    });
-  }
-
-  @Override
-  public void searchCityByText(String text) {
-    if (mApiService == null) {
-      return;
-    }
-
-    mApiService.getCityByName(Defaults.WEATHER_API_KEY, text).enqueue(new Callback<List<CityResponse>>() {
-//    mApiService.getMockCitiesByName().enqueue(new Callback<List<CityResponse>>() {
-      @Override
-      public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
-        if (response.isSuccessful() && response.body() != null) {
-          ArrayList<City> foundCities = new ArrayList<>();
-          for (CityResponse cityResponse: response.body()) {
-            City city  = MyUtil.formCity(cityResponse);
-            foundCities.add(city);
-            Log.d(TAG, "onResponse: " + city.toString());
-          }
-          if (isViewAttached()) {
-            mView.showFoundCities(foundCities);
-          }
-        }
-      }
-
-      @Override
-      public void onFailure(Call<List<CityResponse>> call, Throwable t) {
-        Log.e(TAG, "search City by text failure: " + t);
       }
     });
   }

@@ -24,14 +24,10 @@ public interface MainActivityContract {
     void showProgress();
 
     void dismissProgress();
-
-    void showFoundCities(List<City> foundCities);
   }
 
   interface Presenter {
     void loadData(String cityKeyId);
-
-    void searchCityByText(String text);
 
     void bind(View v);
 

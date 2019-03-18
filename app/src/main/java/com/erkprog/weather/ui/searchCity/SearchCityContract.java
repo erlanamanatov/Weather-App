@@ -15,6 +15,8 @@ public interface SearchCityContract {
     void onLoadingData();
 
     void onDataLoaded();
+
+    void clearList();
   }
 
   interface Presenter {
