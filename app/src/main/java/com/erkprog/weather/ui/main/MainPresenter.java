@@ -1,20 +1,22 @@
 package com.erkprog.weather.ui.main;
 
-import android.location.Location;
 import android.util.Log;
 
 import com.erkprog.weather.data.Defaults;
 import com.erkprog.weather.data.LocationHelper;
 import com.erkprog.weather.data.entity.City;
-import com.erkprog.weather.data.entity.CityResponse;
 import com.erkprog.weather.data.entity.DailyForecast;
 import com.erkprog.weather.data.entity.ForecastDetailed;
 import com.erkprog.weather.data.weatherRepository.ApiInterface;
 import com.erkprog.weather.util.MyUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +28,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
   private MainActivityContract.View mView;
   private LocationHelper mLocationHelper;
   private List<DailyForecast> dailyForecastList;
+  private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
   MainPresenter(ApiInterface service, LocationHelper locationHelper) {
     mApiService = service;
@@ -77,12 +80,9 @@ public class MainPresenter implements MainActivityContract.Presenter {
   @Override
   public void getCurrentLocation() {
     mView.onGettingLocation();
-    mLocationHelper.getLocation(new LocationHelper.OnLocationChangedListener() {
-      @Override
-      public void onLocationChanged(Location location) {
-        if (isViewAttached()) {
-          getCity(location.getLatitude(), location.getLongitude());
-        }
+    mLocationHelper.getLocation(location -> {
+      if (isViewAttached()) {
+        getCity(location.getLatitude(), location.getLongitude());
       }
     });
   }
@@ -94,32 +94,29 @@ public class MainPresenter implements MainActivityContract.Presenter {
 
     String geoQueryParam = String.format("%s,%s", String.valueOf(latitude), String.valueOf(longitude));
 
-    mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam).enqueue(new Callback<CityResponse>() {
-      //    mApiService.getMockGeoPosition().enqueue(new Callback<CityResponse>() {
+    Single<City> cityResponse = mApiService.getCityByGeoposition(Defaults.WEATHER_API_KEY, geoQueryParam)
+        .subscribeOn(Schedulers.io())
+        .map(MyUtil::formCity)
+        .observeOn(AndroidSchedulers.mainThread());
+
+    mCompositeDisposable.add(cityResponse.subscribeWith(new DisposableSingleObserver<City>() {
       @Override
-      public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
-        if (isViewAttached()) {
-          mView.onLocationFound();
-          if (response.body() != null) {
-            City newCity = MyUtil.formCity(response.body());
-            if (newCity != null) {
-              Log.d(TAG, "geo response: " + newCity);
-              mView.addNewCity(newCity);
-            } else {
-              mView.showMessage("Error getting city from georesponse");
-            }
-          }
+      public void onSuccess(City city) {
+        if (!isViewAttached()) {
+          return;
         }
+        mView.onLocationFound();
+        mView.addNewCity(city);
       }
 
       @Override
-      public void onFailure(Call<CityResponse> call, Throwable t) {
+      public void onError(Throwable e) {
         if (isViewAttached()) {
           mView.onLocationFound();
-          mView.showMessage("Geoposition failure" + t.getMessage());
+          mView.showMessage("Geoposition failure" + e.getMessage());
         }
       }
-    });
+    }));
   }
 
   @Override
@@ -136,6 +133,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
   @Override
   public void unbind() {
     mView = null;
+    mCompositeDisposable.clear();
   }
 
   @Override

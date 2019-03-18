@@ -7,6 +7,7 @@ import com.erkprog.weather.data.entity.ForecastResponse;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -21,8 +22,8 @@ public interface ApiInterface {
                                          @Query("metric") Boolean metric);
 
   @GET("locations/v1/cities/geoposition/search")
-  Call<CityResponse> getCityByGeoposition(@Query("apikey") String apikey,
-                                          @Query("q") String latLong);
+  Single<CityResponse> getCityByGeoposition(@Query("apikey") String apikey,
+                                            @Query("q") String latLong);
 
   @GET("http://dataservice.accuweather.com/locations/v1/cities/search")
   Observable<List<CityResponse>> getCityByName(@Query("apikey") String apikey,
