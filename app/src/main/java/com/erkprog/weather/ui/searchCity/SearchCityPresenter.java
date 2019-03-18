@@ -70,7 +70,7 @@ public class SearchCityPresenter implements SearchCityContract.Presenter {
         Log.e(TAG, "onError: Search city by Name, onFailure " + e);
         if (isAttached()) {
           mView.onDataLoaded();
-          mView.showMessage("Error fetching data");
+          mView.showError();
         }
       }
     }));

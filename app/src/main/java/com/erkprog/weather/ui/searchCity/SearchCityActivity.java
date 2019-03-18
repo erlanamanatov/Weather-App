@@ -111,6 +111,11 @@ public class SearchCityActivity extends AppCompatActivity implements SearchCityC
   }
 
   @Override
+  public void showError() {
+    showMessage("Error fetching data");
+  }
+
+  @Override
   protected void onDestroy() {
     mPresenter.unbind();
     super.onDestroy();

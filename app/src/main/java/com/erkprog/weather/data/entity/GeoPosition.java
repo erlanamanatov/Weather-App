@@ -24,4 +24,13 @@ public class GeoPosition {
   public void setLongitude(Double longitude) {
     this.longitude = longitude;
   }
+
+  public GeoPosition(Double latitude, Double longitude) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
+  public GeoPosition() {
+
+  }
 }
