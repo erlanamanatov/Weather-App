@@ -17,9 +17,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainPresenter implements MainActivityContract.Presenter {
   private static final String TAG = "MainPresenter";
@@ -42,39 +39,34 @@ public class MainPresenter implements MainActivityContract.Presenter {
       return;
     }
 
-    mApiService.get5dayForecast(
+    Single<ForecastDetailed> forecast = mApiService.get5dayForecast(
         cityKeyId,
         Defaults.WEATHER_API_KEY,
         Defaults.WEATHER_DETAILED_FORECAST,
         Defaults.WEATHER_METRIC_UNIT)
-        .enqueue(new Callback<ForecastDetailed>() {
-          //    mApiService.getMock5dayDetailedForecast().enqueue(new Callback<ForecastDetailed>() {
-          @Override
-          public void onResponse(Call<ForecastDetailed> call, Response<ForecastDetailed> response) {
-            if (isViewAttached()) {
-              mView.dismissProgress();
-              if (response.isSuccessful()) {
-                ForecastDetailed forecastResponse = response.body();
-                if (forecastResponse != null && forecastResponse.getDailyForecasts() != null) {
-                  dailyForecastList = forecastResponse.getDailyForecasts();
-                  mView.showData(dailyForecastList);
-                }
-              } else {
-                mView.showMessage("failed to get forecast data");
-                mView.displayError();
-              }
-            }
-          }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
 
-          @Override
-          public void onFailure(Call<ForecastDetailed> call, Throwable t) {
-            if (isViewAttached()) {
-              mView.dismissProgress();
-              mView.showMessage(" Failure " + t.getMessage());
-              mView.displayError();
-            }
-          }
-        });
+    mCompositeDisposable.add(forecast.subscribeWith(new DisposableSingleObserver<ForecastDetailed>() {
+      @Override
+      public void onSuccess(ForecastDetailed forecastDetailed) {
+        if (!isViewAttached()) {
+          return;
+        }
+        mView.dismissProgress();
+        dailyForecastList = forecastDetailed.getDailyForecasts();
+        mView.showData(dailyForecastList);
+      }
+
+      @Override
+      public void onError(Throwable e) {
+        if (isViewAttached()) {
+          mView.dismissProgress();
+          mView.showMessage(" Failure " + e.getMessage());
+          mView.displayError();
+        }
+      }
+    }));
   }
 
   @Override

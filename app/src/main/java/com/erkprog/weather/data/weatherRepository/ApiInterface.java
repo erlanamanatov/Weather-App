@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
   @GET("forecasts/v1/daily/5day/{locId}")
-  Call<ForecastDetailed> get5dayForecast(@Path("locId") String locId,
+  Single<ForecastDetailed> get5dayForecast(@Path("locId") String locId,
                                          @Query("apikey") String apikey,
                                          @Query("details") Boolean details,
                                          @Query("metric") Boolean metric);
