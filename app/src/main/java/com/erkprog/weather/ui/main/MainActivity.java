@@ -252,6 +252,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     errorTextView.setVisibility(View.VISIBLE);
   }
 
+  @Override
+  public void showGeopositionError(String s) {
+    showMessage(s);
+  }
+
   private void hideError() {
     dailyRecyclerView.setVisibility(View.VISIBLE);
     errorImg.setVisibility(View.GONE);

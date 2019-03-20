@@ -105,7 +105,7 @@ public class MainPresenter implements MainActivityContract.Presenter {
       public void onError(Throwable e) {
         if (isViewAttached()) {
           mView.onLocationFound();
-          mView.showMessage("Geoposition failure" + e.getMessage());
+          mView.showGeopositionError("Geoposition failure" + e.getMessage());
         }
       }
     }));

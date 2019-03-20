@@ -24,6 +24,8 @@ public interface MainActivityContract {
     void showProgress();
 
     void dismissProgress();
+
+    void showGeopositionError(String s);
   }
 
   interface Presenter {
